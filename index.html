@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Owed — Find out what you're entitled to</title>
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: system-ui, sans-serif; background: #f9f9f9; color: #111; }
+  .container { max-width: 600px; margin: 60px auto; padding: 0 20px; }
+  h1 { font-size: 2rem; margin-bottom: 8px; }
+  p.sub { color: #555; margin-bottom: 32px; }
+  label { display: block; font-size: 14px; font-weight: 500; margin-bottom: 6px; }
+  input, select { width: 100%; padding: 10px 14px; border: 1px solid #ddd; border-radius: 8px; font-size: 15px; margin-bottom: 20px; background: white; }
+  button { width: 100%; padding: 14px; background: #111; color: white; border: none; border-radius: 8px; font-size: 16px; cursor: pointer; }
+  button:hover { background: #333; }
+  #result { margin-top: 32px; background: white; border-radius: 12px; padding: 24px; border: 1px solid #eee; white-space: pre-wrap; line-height: 1.6; display: none; }
+  #loading { display: none; text-align: center; margin-top: 24px; color: #555; }
+</style>
+</head>
+<body>
+<div class="container">
+  <h1>Owed</h1>
+  <p class="sub">Answer a few questions. We'll tell you exactly what benefits you're entitled to and help you claim them.</p>
+  
+  <label>Employment status</label>
+  <select id="employment">
+    <option value="">Select...</option>
+    <option value="unemployed">Unemployed</option>
+    <option value="part-time">Part-time employed</option>
+    <option value="full-time">Full-time employed</option>
+    <option value="self-employed">Self-employed</option>
+    <option value="unable-to-work">Unable to work due to illness or disability</option>
+    <option value="carer">Carer for someone else</option>
+  </select>
+
+  <label>Monthly take-home income (£)</label>
+  <input type="number" id="income" placeholder="e.g. 800" />
+
+  <label>Housing situation</label>
+  <select id="housing">
+    <option value="">Select...</option>
+    <option value="renting-private">Renting privately</option>
+    <option value="renting-social">Renting from council or housing association</option>
+    <option value="living-with-family">Living with family, no rent</option>
+    <option value="homeowner">Homeowner</option>
+  </select>
+
+  <label>Number of dependent children</label>
+  <input type="number" id="children" placeholder="e.g. 0" min="0" />
+
+  <label>Do you have a disability or long-term health condition?</label>
+  <select id="disability">
+    <option value="">Select...</option>
+    <option value="yes">Yes</option>
+    <option value="no">No</option>
+  </select>
+
+  <label>Age</label>
+  <input type="number" id="age" placeholder="e.g. 34" />
+
+  <label>Are you a UK resident?</label>
+  <select id="resident">
+    <option value="">Select...</option>
+    <option value="yes">Yes</option>
+    <option value="no">No</option>
+  </select>
+
+  <button onclick="assess()">Find out what I'm owed</button>
+
+  <div id="loading">Calculating your entitlements...</div>
+  <div id="result"></div>
+</div>
+
+<script>
+async function assess() {
+  const data = {
+    employment: document.getElementById('employment').value,
+    income: document.getElementById('income').value,
+    housing: document.getElementById('housing').value,
+    children: document.getElementById('children').value,
+    disability: document.getElementById('disability').value,
+    age: document.getElementById('age').value,
+    resident: document.getElementById('resident').value
+  };
+
+  document.getElementById('loading').style.display = 'block';
+  document.getElementById('result').style.display = 'none';
+
+  const response = await fetch('/api/assess', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify(data)
+  });
+
+  const result = await response.json();
+  document.getElementById('loading').style.display = 'none';
+  document.getElementById('result').style.display = 'block';
+  document.getElementById('result').innerText = result.assessment;
+}
+</script>
+</body>
+</html>
