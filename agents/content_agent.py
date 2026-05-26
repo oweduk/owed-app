@@ -23,7 +23,7 @@ def call_groq(system_prompt, user_message):
             {"role": "user", "content": user_message}
         ],
         "temperature": 0.7,
-        "max_tokens": 3000
+        "max_tokens": 1500
     }).encode("utf-8")
 
     req = urllib.request.Request(
