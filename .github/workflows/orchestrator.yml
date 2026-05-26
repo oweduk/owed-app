@@ -30,7 +30,7 @@ jobs:
         run: python orchestrator/brain.py
 
       - name: Wait
-        run: sleep 30
+        run: sleep 60
 
       - name: Run content agent
         env:
