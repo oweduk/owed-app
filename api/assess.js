@@ -71,7 +71,7 @@ Format your response clearly with each benefit on its own line.`;
     const totalAmount = totalMatch ? parseInt(totalMatch[1]) : null;
     const successFee = totalAmount ? Math.round(totalAmount * 0.10) : null;
 
-    const assessment = rawAssessment.replace(/TOTAL_AMOUNT:\d+/, '').trim();
+    const assessment = rawAssessment.replace(/TOTAL_AMOUNT:\s*\d+/g, '').trim();
 
     res.status(200).json({ 
       assessment,
