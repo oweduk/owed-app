@@ -1,6 +1,8 @@
 import json
 import os
 import datetime
+import sys
+sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 from agents.utils import call_groq
 
 MEMORY_PATH = "memory/store.json"
