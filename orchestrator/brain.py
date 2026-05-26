@@ -68,10 +68,18 @@ You always respond in valid JSON with this exact structure:
   "self_assessment": "honest evaluation of orchestrator performance so far"
 }"""
 
+    recent_log = memory.get("performance_log", [])[-3:]
+    recent_archive = memory.get("archive", [])[-3:]
+    strategies = memory.get("strategies_tried", [])[-5:]
+    
     user_message = f"""Current cycle: {cycle_number}
-Current memory state: {json.dumps(memory, indent=2)}
+Goal: {memory.get('goal', '')}
+Cycles completed: {cycle_number}
+Recent performance: {json.dumps(recent_log, indent=2)}
+Recent archive: {json.dumps(recent_archive, indent=2)}
+Strategies tried: {json.dumps(strategies, indent=2)}
 
-Analyse the current state, decide what to do this cycle, and produce agent instructions. Be specific, ambitious, and brutal about what isn't working."""
+Decide what to do this cycle and produce agent instructions."""
 
     print("Thinking...")
     response = call_groq(system_prompt, user_message)
