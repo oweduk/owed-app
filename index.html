@@ -1031,7 +1031,20 @@
         const result = await response.json();
         
         // Display results
-        resultsContent.textContent = result.assessment;
+        let output = result.assessment || '';
+        resultsContent.innerHTML = output.replace(/\n/g, '<br>');
+
+        if (result.totalAmount && result.successFee && result.paymentLink) {
+          const feeBox = document.createElement('div');
+          feeBox.style.cssText = 'margin-top:24px;padding:20px;background:#f0faf5;border-radius:12px;border:1px solid #c0e8d5;';
+          feeBox.innerHTML = `
+            <p style="font-size:15px;margin:0 0 4px 0;"><strong>Estimated annual entitlement: £${result.totalAmount ? result.totalAmount.toLocaleString() : '0'}</strong></p>
+            <p style="font-size:13px;color:#555;margin:0 0 16px 0;">Owed success fee (10%): £${result.successFee ? result.successFee.toLocaleString() : '0'} — only charged once you successfully claim.</p>
+            <a href="${result.paymentLink}" target="_blank" style="display:inline-block;background:#0F1729;color:white;padding:14px 28px;border-radius:8px;text-decoration:none;font-size:15px;font-weight:500;">Get my full claim pack →</a>
+          `;
+          resultsContent.appendChild(feeBox);
+        }
+
         resultsCard.classList.add('visible');
         
         // Scroll to results
