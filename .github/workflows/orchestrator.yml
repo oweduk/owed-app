@@ -30,18 +30,29 @@ jobs:
         run: python orchestrator/brain.py
 
       - name: Wait
-        run: sleep 60
+        run: sleep 45
 
       - name: Run content agent
         env:
           GROQ_API_KEY: ${{ secrets.GROQ_API_KEY }}
         run: python agents/content_agent.py
 
+      - name: Wait
+        run: sleep 45
+
+      - name: Run debate agent
+        env:
+          GROQ_API_KEY: ${{ secrets.GROQ_API_KEY }}
+        run: python agents/debate_agent.py
+
+      - name: Wait
+        run: sleep 45
+
       - name: Run publisher agent
         run: python agents/publisher_agent.py
 
       - name: Wait
-        run: sleep 30
+        run: sleep 45
 
       - name: Run reflection agent (VIGIL)
         env:
@@ -49,7 +60,7 @@ jobs:
         run: python agents/reflection_agent.py
 
       - name: Wait
-        run: sleep 30
+        run: sleep 45
 
       - name: Run site agent
         env:
@@ -57,7 +68,7 @@ jobs:
         run: python agents/site_agent.py
 
       - name: Wait
-        run: sleep 30
+        run: sleep 45
 
       - name: Run outreach agent
         env:
@@ -65,7 +76,7 @@ jobs:
         run: python agents/outreach_agent.py
 
       - name: Wait
-        run: sleep 30
+        run: sleep 45
 
       - name: Run MAS2 agent generator
         env:
