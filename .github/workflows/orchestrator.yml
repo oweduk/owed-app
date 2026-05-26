@@ -34,10 +34,13 @@ jobs:
           GROQ_API_KEY: ${{ secrets.GROQ_API_KEY }}
         run: python agents/content_agent.py
 
-      - name: Commit memory update
+      - name: Run publisher agent
+        run: python agents/publisher_agent.py
+
+      - name: Commit all outputs
         run: |
           git config user.name "Owed Orchestrator"
           git config user.email "orchestrator@owed.ai"
-          git add memory/store.json
+          git add memory/store.json blog/
           git diff --staged --quiet || git commit -m "Orchestrator cycle ${{ github.run_number }}"
           git push
