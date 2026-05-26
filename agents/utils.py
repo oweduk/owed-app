@@ -9,7 +9,7 @@ GROQ_URL = "https://api.groq.com/openai/v1/chat/completions"
 
 def call_groq(system_prompt, user_message, max_tokens=1500, temperature=0.7, retries=5):
     payload = json.dumps({
-        "model": "llama-3.3-70b-versatile",
+        "model": "llama-3.1-8b-instant",
         "messages": [
             {"role": "system", "content": system_prompt},
             {"role": "user", "content": user_message}
