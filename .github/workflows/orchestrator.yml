@@ -37,6 +37,11 @@ jobs:
       - name: Run publisher agent
         run: python agents/publisher_agent.py
 
+      - name: Run reflection agent (VIGIL)
+        env:
+          GROQ_API_KEY: ${{ secrets.GROQ_API_KEY }}
+        run: python agents/reflection_agent.py
+
       - name: Commit all outputs
         run: |
           git config user.name "Owed Orchestrator"
