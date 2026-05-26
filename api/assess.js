@@ -33,7 +33,7 @@ When responding:
 3. Give a TOTAL estimated annual amount
 4. Write 2-3 sentences explaining how to start claiming the most valuable one
 5. Be specific, confident and direct — no vague language
-6. End with: "This is an estimate based on the information provided. Exact amounts depend on your full circumstances."
+6. End with exactly this text on its own line: TOTAL_AMOUNT:[amount in pounds as a number only, no symbols]
 
 Format your response clearly with each benefit on its own line.`;
 
@@ -65,8 +65,20 @@ Format your response clearly with each benefit on its own line.`;
     });
 
     const data = await response.json();
-    const assessment = data.choices[0].message.content;
-    res.status(200).json({ assessment });
+    const rawAssessment = data.choices[0].message.content;
+
+    const totalMatch = rawAssessment.match(/TOTAL_AMOUNT:(\d+)/);
+    const totalAmount = totalMatch ? parseInt(totalMatch[1]) : null;
+    const successFee = totalAmount ? Math.round(totalAmount * 0.10) : null;
+
+    const assessment = rawAssessment.replace(/TOTAL_AMOUNT:\d+/, '').trim();
+
+    res.status(200).json({ 
+      assessment,
+      totalAmount,
+      successFee,
+      paymentLink: process.env.STRIPE_PAYMENT_LINK
+    });
   } catch (error) {
     res.status(500).json({ assessment: 'Something went wrong. Please try again.' });
   }
