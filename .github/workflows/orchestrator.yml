@@ -17,21 +17,12 @@ jobs:
         uses: actions/checkout@v4
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
+          persist-credentials: true
 
       - name: Set up Python
         uses: actions/setup-python@v5
         with:
           python-version: '3.11'
-
-      - name: Debug secret
-        run: |
-          if [ -z "$GROQ_API_KEY" ]; then
-            echo "SECRET IS EMPTY"
-          else
-            echo "SECRET IS PRESENT"
-          fi
-        env:
-          GROQ_API_KEY: ${{ secrets.GROQ_API_KEY }}
 
       - name: Run orchestrator
         env:
@@ -44,4 +35,4 @@ jobs:
           git config user.email "orchestrator@owed.ai"
           git add memory/store.json
           git diff --staged --quiet || git commit -m "Orchestrator cycle ${{ github.run_number }}"
-          git push
+          git push https://x-access-token:${{ secrets.GITHUB_TOKEN }}@github.com/${{ github.repository }}.git
