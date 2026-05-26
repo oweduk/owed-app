@@ -15,21 +15,6 @@ def write_memory(memory):
     with open(MEMORY_PATH, "w") as f:
         json.dump(memory, f, indent=2)
 
-    req = urllib.request.Request(
-        GROQ_URL,
-        data=payload,
-        headers={
-            "Content-Type": "application/json",
-            "Authorization": f"Bearer {GROQ_API_KEY}",
-            "User-Agent": "OwedOrchestrator/1.0"
-        },
-        method="POST"
-    )
-
-    with urllib.request.urlopen(req) as response:
-        result = json.loads(response.read().decode("utf-8"))
-        return result["choices"][0]["message"]["content"]
-
 def run_cycle():
     memory = read_memory()
     memory["cycles"] += 1
@@ -52,6 +37,7 @@ Agents you can instruct:
 - site_agent: identifies improvements to the Owed landing page and form
 - outreach_agent: finds communities and forums where target users congregate
 - reflection_agent: evaluates whether the orchestrator itself is making good decisions
+- debate_agent: runs inter-agent debate on content quality before publishing
 
 You always respond in valid JSON with this exact structure:
 {
@@ -59,10 +45,11 @@ You always respond in valid JSON with this exact structure:
   "experiment_this_cycle": "one specific new thing to try",
   "agent_instructions": {
     "content_agent": "specific instruction",
-    "quality_agent": "specific instruction", 
+    "quality_agent": "specific instruction",
     "site_agent": "specific instruction",
     "outreach_agent": "specific instruction",
-    "reflection_agent": "specific instruction"
+    "reflection_agent": "specific instruction",
+    "debate_agent": "specific instruction"
   },
   "archive_entry": "one sentence summary of this cycle for long term memory",
   "self_assessment": "honest evaluation of orchestrator performance so far"
@@ -71,18 +58,17 @@ You always respond in valid JSON with this exact structure:
     recent_log = memory.get("performance_log", [])[-3:]
     recent_archive = memory.get("archive", [])[-3:]
     strategies = memory.get("strategies_tried", [])[-5:]
-    
+
     user_message = f"""Current cycle: {cycle_number}
 Goal: {memory.get('goal', '')}
-Cycles completed: {cycle_number}
 Recent performance: {json.dumps(recent_log, indent=2)}
 Recent archive: {json.dumps(recent_archive, indent=2)}
 Strategies tried: {json.dumps(strategies, indent=2)}
 
-Decide what to do this cycle and produce agent instructions."""
+Decide what to do this cycle and produce agent instructions. Be specific, ambitious, and brutal about what isn't working."""
 
     print("Thinking...")
-    response = call_groq(system_prompt, user_message)
+    response = call_groq(system_prompt, user_message, max_tokens=1500)
 
     try:
         decision = json.loads(response)
