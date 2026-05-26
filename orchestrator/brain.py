@@ -32,7 +32,8 @@ def call_groq(system_prompt, user_message):
         data=payload,
         headers={
             "Content-Type": "application/json",
-            "Authorization": f"Bearer {GROQ_API_KEY}"
+            "Authorization": f"Bearer {GROQ_API_KEY}",
+            "User-Agent": "OwedOrchestrator/1.0"
         },
         method="POST"
     )
