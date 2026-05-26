@@ -23,7 +23,7 @@ def call_groq(system_prompt, user_message):
             {"role": "user", "content": user_message}
         ],
         "temperature": 0.7,
-        "max_tokens": 2000
+        "max_tokens": 1500
     }).encode("utf-8")
 
     req = urllib.request.Request(
@@ -100,9 +100,22 @@ Generate a fresh outreach plan. Don't repeat communities already hit recently. B
     try:
         plan = json.loads(response)
     except json.JSONDecodeError:
-        start = response.find("{")
-        end = response.rfind("}") + 1
-        plan = json.loads(response[start:end])
+        try:
+            start = response.find("{")
+            end = response.rfind("}") + 1
+            plan = json.loads(response[start:end])
+        except json.JSONDecodeError:
+            print("JSON parse failed — saving raw response and skipping cycle.")
+            if "outreach_log" not in memory:
+                memory["outreach_log"] = []
+            memory["outreach_log"].append({
+                "cycle": memory.get("cycles", 0),
+                "timestamp": timestamp,
+                "error": "JSON parse failed",
+                "raw": response[:500]
+            })
+            write_memory(memory)
+            return
 
     targets = plan.get("outreach_targets", [])
     print(f"\nStrategy: {plan.get('strategy_summary', '')}")
