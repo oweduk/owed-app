@@ -1,12 +1,10 @@
 import json
 import os
 import datetime
-import urllib.request
 import re
+from agents.utils import call_groq
 
 MEMORY_PATH = "memory/store.json"
-GROQ_API_KEY = os.environ.get("GROQ_API_KEY")
-GROQ_URL = "https://api.groq.com/openai/v1/chat/completions"
 INDEX_PATH = "index.html"
 
 def read_memory():
@@ -24,17 +22,6 @@ def read_site():
 def write_site(html):
     with open(INDEX_PATH, "w") as f:
         f.write(html)
-
-def call_groq(system_prompt, user_message):
-    payload = json.dumps({
-        "model": "llama-3.3-70b-versatile",
-        "messages": [
-            {"role": "system", "content": system_prompt},
-            {"role": "user", "content": user_message}
-        ],
-        "temperature": 0.4,
-        "max_tokens": 4000
-    }).encode("utf-8")
 
     req = urllib.request.Request(
         GROQ_URL,
