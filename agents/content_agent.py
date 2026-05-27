@@ -15,20 +15,6 @@ def write_memory(memory):
     with open(MEMORY_PATH, "w") as f:
         json.dump(memory, f, indent=2)
 
-    req = urllib.request.Request(
-        GROQ_URL,
-        data=payload,
-        headers={
-            "Content-Type": "application/json",
-            "Authorization": f"Bearer {GROQ_API_KEY}",
-            "User-Agent": "OwedOrchestrator/1.0"
-        },
-        method="POST"
-    )
-    with urllib.request.urlopen(req) as response:
-        result = json.loads(response.read().decode("utf-8"))
-        return result["choices"][0]["message"]["content"]
-
 def run():
     memory = read_memory()
     instruction = memory.get("current_agent_instructions", {}).get("content_agent", "Write an SEO article about UK benefits entitlement.")
@@ -37,7 +23,7 @@ def run():
     print(f"\n=== CONTENT AGENT — {timestamp} ===")
     print(f"Instruction: {instruction}")
 
-    system_prompt = """You are a world-class SEO content writer specialising in UK benefits and welfare. 
+    system_prompt = """You are a world-class SEO content writer specialising in UK benefits and welfare.
 You write articles that rank on Google and genuinely help people find money they are owed by the government.
 
 Every article you write:
@@ -55,7 +41,7 @@ You respond with ONLY the article in markdown. No preamble, no explanation."""
 Write one complete SEO article now. Make it genuinely useful and compelling."""
 
     print("Writing article...")
-    article = call_groq(system_prompt, user_message)
+    article = call_groq(system_prompt, user_message, max_tokens=1500)
 
     if "content_outputs" not in memory:
         memory["content_outputs"] = []
@@ -69,7 +55,6 @@ Write one complete SEO article now. Make it genuinely useful and compelling."""
 
     write_memory(memory)
     print("Article written and saved to memory.")
-    print(f"\nPreview:\n{article[:300]}...")
 
 if __name__ == "__main__":
     run()
