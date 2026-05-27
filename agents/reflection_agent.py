@@ -49,11 +49,13 @@ You respond in valid JSON:
     recent_cycles = memory.get("performance_log", [])[-3:]
     current_instructions = memory.get("current_agent_instructions", {})
 
+    recent_content_preview = [{"instruction": a.get("instruction"), "preview": a.get("article", "")[:300]} for a in recent_articles]
+
     user_message = f"""Current cycle: {cycles}
 Goal: {memory.get('goal', '')}
 Recent decisions: {json.dumps(recent_cycles, indent=2)}
 Current instructions: {json.dumps(current_instructions, indent=2)}
-Recent content: {json.dumps([{{"instruction": a.get("instruction"), "preview": a.get("article", "")[:300]}} for a in recent_articles], indent=2)}
+Recent content: {json.dumps(recent_content_preview, indent=2)}
 Strategies tried: {json.dumps(memory.get('strategies_tried', []), indent=2)}
 
 Evaluate everything brutally."""
