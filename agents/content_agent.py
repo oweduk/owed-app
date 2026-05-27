@@ -25,7 +25,6 @@ def write_memory(memory):
         },
         method="POST"
     )
-
     with urllib.request.urlopen(req) as response:
         result = json.loads(response.read().decode("utf-8"))
         return result["choices"][0]["message"]["content"]
