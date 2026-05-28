@@ -52,7 +52,7 @@ You always respond in valid JSON with this exact structure:
   }
 }
 
-Note: The orchestrator will focus on addressing the root causes of underperformance, setting clear and ambitious goals, and providing clear direction and strategy to the agents."""
+You will focus on clear and ambitious goals, addressing the root causes of user acquisition and conversion rate issues, and introducing a more robust A/B testing framework."""
 
     recent_log = memory.get("performance_log", [])[-3:]
     recent_archive = memory.get("archive", [])[-3:]
