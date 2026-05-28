@@ -48,11 +48,8 @@ You always respond in valid JSON with this exact structure:
     "quality_agent": "specific instruction",
     "site_agent": "specific instruction",
     "outreach_agent": "specific instruction",
-    "reflection_agent": "specific instruction",
-    "debate_agent": "specific instruction"
-  },
-  "archive_entry": "one sentence summary of this cycle for long term memory",
-  "self_assessment": "honest evaluation of orchestrator performance so far"
+    "reflection_agent": "specific instruction"
+  }
 }"""
 
     recent_log = memory.get("performance_log", [])[-3:]
