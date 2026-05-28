@@ -89,8 +89,8 @@ Respond in JSON:
   "confidence": 1-10
 }"""
 
-    user_message = f"""Current orchestrator code:
-{orchestrator_code}
+    user_message = f"""Current orchestrator system prompt (first 1500 chars):
+{orchestrator_code[orchestrator_code.find('system_prompt'):orchestrator_code.find('system_prompt')+1500]}
 
 Recent performance (last 5 cycles):
 {json.dumps(recent_performance, indent=2)}
