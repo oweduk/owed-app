@@ -3,7 +3,7 @@ import os
 import datetime
 import sys
 sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
-from agents.utils import call_groq, get_profile, evolve_profile
+from agents.utils import call_groq, get_profile, evolve_profile, archive_agent_variant, select_parent
 
 MEMORY_PATH = "memory/store.json"
 AGENTS_DIR = "agents"
@@ -75,8 +75,17 @@ Strategies tried: {json.dumps(memory.get('strategies_tried', [])[-5:], indent=2)
 
 Identify the single most valuable missing agent and generate its complete code."""
 
+    # Archive current variants before generating new ones
+    for agent in existing_agents:
+        if agent not in ["utils", "meta_programmer"]:
+            archive_agent_variant(agent)
+
+    # Select best historical parent for context
+    parent_code = select_parent("content_agent")
+    parent_context = f"\nBest historical content_agent variant for reference:\n{parent_code[:800]}" if parent_code else ""
+
     print("Identifying system gaps and generating new agent...")
-    response = call_groq(system_prompt, user_message)
+    response = call_groq(system_prompt, user_message + parent_context)
 
     try:
         result = json.loads(response)
