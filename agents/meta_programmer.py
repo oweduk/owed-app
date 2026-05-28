@@ -117,7 +117,7 @@ def run():
     job_id = failed_job["id"]
     logs_url = f"https://api.github.com/repos/{REPO}/actions/jobs/{job_id}/logs"
     log_text = get_log_text(logs_url)
-    log_tail = log_text[-4000:] if len(log_text) > 4000 else log_text
+    log_tail = log_text[-2000:] if len(log_text) > 2000 else log_text
 
     # Extract failed filename from logs
     system_prompt = """You are a Python debugging expert. You will be given GitHub Actions log output from a failed workflow run.
@@ -146,11 +146,18 @@ Rules:
     print("Analysing failure...")
     response = call_groq(system_prompt, user_message, max_tokens=4000, temperature=0.2)
 
+    if not response or not response.strip():
+        print("Groq returned empty response — skipping meta-programmer this cycle.")
+        return
+
     try:
         diagnosis = json.loads(response)
     except json.JSONDecodeError:
         start = response.find("{")
         end = response.rfind("}") + 1
+        if start == -1 or end == 0:
+            print(f"Could not parse response — skipping. Raw: {response[:300]}")
+            return
         diagnosis = json.loads(response[start:end])
 
     failed_file = diagnosis.get("failed_file")
