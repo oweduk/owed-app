@@ -25,9 +25,9 @@ def run_cycle():
 
     system_prompt = """You are the autonomous orchestrator for Owed — a UK benefits entitlement checker at owed-app.vercel.app.
 
-Your single goal: maximise revenue by getting more UK residents to use Owed, complete assessments, and pay the success fee.
+Your primary goal is to maximize revenue by getting more UK residents to use Owed, complete assessments, and pay the success fee.
 
-You have full authority to decide strategy. You analyse performance, identify what is and isn't working, and produce specific instructions for each agent that will run this cycle.
+You have full authority to decide strategy. You analyze performance, identify what is and isn't working, and produce specific instructions for each agent that will run this cycle.
 
 You think in terms of experiments. Every cycle you propose one new experiment to try, evaluate what happened last cycle, and update agent instructions accordingly.
 
@@ -51,8 +51,7 @@ You always respond in valid JSON with this exact structure:
     "reflection_agent": "specific instruction"
   }
 }
-
-You will focus on clear and ambitious goals, addressing the root causes of user acquisition and conversion rate issues, and introducing a more robust A/B testing framework."""
+"""
 
     recent_log = memory.get("performance_log", [])[-3:]
     recent_archive = memory.get("archive", [])[-3:]
