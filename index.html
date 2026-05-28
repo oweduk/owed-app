@@ -118,10 +118,7 @@
     .hero-container {
       max-width: 800px;
       margin: 0 auto;
-      padding: 40px;
-      background: var(--white);
-      border-radius: 8px;
-      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+      padding: 0 24px;
     }
     
     .hero-title {
@@ -137,32 +134,18 @@
       margin-bottom: 40px;
     }
     
-    .hero-btn {
-      background: var(--navy);
-      color: var(--white);
-      padding: 10px 20px;
-      border-radius: 8px;
-      text-decoration: none;
-      font-weight: 500;
-      font-size: 14px;
-      transition: all 0.2s ease;
-    }
-    
-    .hero-btn:hover {
-      background: var(--gray-800);
-      transform: translateY(-1px);
-    }
-    
     /* Form Section */
     .form {
-      padding: 40px;
+      max-width: 800px;
+      margin: 0 auto;
+      padding: 40px 24px;
       background: var(--white);
-      border-radius: 8px;
-      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+      border: 1px solid var(--gray-100);
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
     }
     
     .form-container {
-      max-width: 800px;
+      max-width: 600px;
       margin: 0 auto;
     }
     
@@ -173,97 +156,198 @@
       margin-bottom: 16px;
     }
     
-    .form-input {
-      width: 100%;
-      padding: 12px;
-      border: 1px solid var(--gray-300);
-      border-radius: 8px;
+    .form-subtitle {
+      font-size: 14px;
+      color: var(--gray-500);
+      margin-bottom: 24px;
+    }
+    
+    .form-field {
       margin-bottom: 16px;
     }
     
-    .form-submit {
+    .form-field label {
+      font-size: 14px;
+      color: var(--gray-500);
+      margin-bottom: 8px;
+    }
+    
+    .form-field input[type="text"], .form-field input[type="email"] {
+      width: 100%;
+      height: 40px;
+      padding: 12px;
+      border: 1px solid var(--gray-100);
+      border-radius: 8px;
+      font-size: 14px;
+      color: var(--navy);
+    }
+    
+    .form-field input[type="submit"] {
       background: var(--navy);
       color: var(--white);
-      padding: 10px 20px;
+      padding: 12px 24px;
+      border: none;
       border-radius: 8px;
-      text-decoration: none;
-      font-weight: 500;
       font-size: 14px;
-      transition: all 0.2s ease;
-      margin-bottom: 16px;
+      cursor: pointer;
     }
     
-    .form-submit:hover {
+    .form-field input[type="submit"]:hover {
       background: var(--gray-800);
       transform: translateY(-1px);
     }
     
-    .results-card {
-      background: var(--white);
+    #submitBtn {
+      background: var(--navy);
+      color: var(--white);
+      padding: 12px 24px;
+      border: none;
       border-radius: 8px;
-      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-      padding: 20px;
-      margin-bottom: 40px;
+      font-size: 14px;
+      cursor: pointer;
+    }
+    
+    #submitBtn:hover {
+      background: var(--gray-800);
+      transform: translateY(-1px);
+    }
+    
+    #btnText {
+      font-size: 14px;
+      color: var(--navy);
+      margin-right: 8px;
+    }
+    
+    #btnArrow {
+      width: 16px;
+      height: 16px;
+      background: var(--navy);
+      border-radius: 50%;
+      display: inline-block;
+      margin-left: 8px;
+    }
+    
+    #btnSpinner {
+      width: 16px;
+      height: 16px;
+      background: var(--navy);
+      border-radius: 50%;
+      display: inline-block;
+      margin-left: 8px;
+    }
+    
+    /* Results Section */
+    .results {
+      max-width: 800px;
+      margin: 0 auto;
+      padding: 40px 24px;
+      background: var(--white);
+      border: 1px solid var(--gray-100);
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    }
+    
+    .results-container {
+      max-width: 600px;
+      margin: 0 auto;
+    }
+    
+    .results-title {
+      font-size: 24px;
+      font-weight: 700;
+      color: var(--navy);
+      margin-bottom: 16px;
+    }
+    
+    .results-subtitle {
+      font-size: 14px;
+      color: var(--gray-500);
+      margin-bottom: 24px;
     }
     
     .results-content {
-      font-size: 18px;
+      font-size: 14px;
+      color: var(--navy);
+      margin-bottom: 40px;
+    }
+    
+    #resultsCard {
+      background: var(--white);
+      border: 1px solid var(--gray-100);
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+      padding: 24px;
+      margin-bottom: 40px;
+    }
+    
+    #resultsContent {
+      font-size: 14px;
       color: var(--navy);
     }
     
-    .error-message {
+    #errorMessage {
       font-size: 14px;
       color: var(--gray-500);
-      margin-bottom: 16px;
+      margin-bottom: 40px;
     }
   </style>
 </head>
 <body>
   <nav class="nav">
     <div class="nav-container">
-      <a class="logo" href="#">
+      <a href="#" class="logo">
         <span class="logo-icon">
-          <svg viewBox="0 0 32 32">
-            <path d="M16 0c-8.836 0-16 7.164-16 16s7.164 16 16 16 16-7.164 16-16-7.164-16-16-16zm0 14c-3.309 0-6-2.691-6-6s2.691-6 6-6 6 2.691 6 6-2.691 6-6 6z" />
+          <svg viewBox="0 0 24 24">
+            <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8zm0-6c-1.66 0-3-1.34-3-3s1.34-3 3-3 3 1.34 3 3-1.34 3-3 3z" />
           </svg>
         </span>
         <span>Owed</span>
       </a>
-      <a class="nav-cta" href="#">Get Started</a>
+      <a href="#" class="nav-cta">Get Started</a>
     </div>
   </nav>
   <section class="hero">
     <div class="hero-container">
       <h1 class="hero-title">Find out what the government owes you</h1>
       <p class="hero-subtitle">Check your UK benefits entitlement in 2 minutes. £24 billion goes unclaimed every year.</p>
-      <a class="hero-btn" href="#">Get Started</a>
+      <button id="submitBtn">
+        <span id="btnText">Get Started</span>
+        <span id="btnArrow" class="fa fa-arrow-right"></span>
+      </button>
     </div>
   </section>
   <section class="form">
     <div class="form-container">
-      <h2 class="form-title">Get Your Free Assessment</h2>
+      <h2 class="form-title">Get Started</h2>
+      <p class="form-subtitle">Please provide your information to get started.</p>
       <form>
-        <input class="form-input" type="text" id="name" placeholder="Name">
-        <input class="form-input" type="email" id="email" placeholder="Email">
-        <input class="form-input" type="tel" id="phone" placeholder="Phone">
-        <button class="form-submit" id="submitBtn">Get Started</button>
+        <div class="form-field">
+          <label for="name">Name:</label>
+          <input type="text" id="name" name="name" required>
+        </div>
+        <div class="form-field">
+          <label for="email">Email:</label>
+          <input type="email" id="email" name="email" required>
+        </div>
+        <div class="form-field">
+          <input type="submit" value="Get Started">
+        </div>
       </form>
-      <div class="results-card">
-        <div class="results-content">
-          <p id="resultsContent"></p>
+    </div>
+  </section>
+  <section class="results">
+    <div class="results-container">
+      <h2 class="results-title">Your Results</h2>
+      <p class="results-subtitle">You may be owed money from the government.</p>
+      <div id="resultsCard">
+        <div id="resultsContent">
+          <!-- Results will be displayed here -->
         </div>
       </div>
-      <div class="error-message" id="errorMessage"></div>
+      <p id="errorMessage"></p>
     </div>
   </section>
   <footer>
-    <p>&copy; 2026 Owed. All rights reserved.</p>
-    <p><a href="/legal/privacy.html">Privacy Policy</a> | <a href="/legal/terms.html">Terms of Service</a> | <a href="mailto:hello@owed.co.uk">Contact</a></p>
+    <p>&copy; 2026 Owed. <a href="/legal/privacy.html">Privacy Policy</a> | <a href="/legal/terms.html">Terms of Service</a> | <a href="mailto:hello@owed.co.uk">Contact</a></p>
   </footer>
-  <script>
-    document.getElementById('submitBtn').addEventListener('click', function() {
-      // Form submission logic here
-    });
-  </script>
+  <script src="script.js"></script>
 </body>
 </html>
