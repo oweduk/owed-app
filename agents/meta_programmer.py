@@ -9,7 +9,7 @@ import urllib.error
 sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 from agents.utils import call_groq
 
-GITHUB_PAT = os.environ.get("GITHUB_PAT")
+GITHUB_PAT = os.environ.get("GH_PAT")
 REPO = "oweduk/owed-app"
 GITHUB_API = "https://api.github.com"
 MEMORY_PATH = "memory/store.json"
