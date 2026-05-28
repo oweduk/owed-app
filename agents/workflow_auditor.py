@@ -62,7 +62,15 @@ def get_run_logs(job_id):
         }
     )
     try:
-        with urllib.request.urlopen(req) as response:
+        # GitHub redirects to a presigned S3 URL — follow without auth header
+        opener = urllib.request.build_opener(urllib.request.HTTPRedirectHandler())
+        class NoAuthOnRedirect(urllib.request.HTTPRedirectHandler):
+            def redirect_request(self, req, fp, code, msg, headers, newurl):
+                new_req = urllib.request.Request(newurl)
+                new_req.add_header("User-Agent", "OwedWorkflowAuditor/1.0")
+                return new_req
+        opener = urllib.request.build_opener(NoAuthOnRedirect())
+        with opener.open(req) as response:
             return response.read().decode("utf-8", errors="replace")
     except Exception as e:
         return f"Could not fetch logs: {e}"
