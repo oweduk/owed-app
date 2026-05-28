@@ -120,188 +120,122 @@
       margin: 0 auto;
     }
     
-    /* Experimentation Section */
-    .experimentation {
+    /* Content Section */
+    .content {
       padding: 80px 24px;
-      background: var(--gray-50);
     }
     
-    .experimentation-container {
+    .content-container {
       max-width: 800px;
       margin: 0 auto;
     }
     
-    .experimentation-header {
-      margin-bottom: 24px;
-    }
-    
-    .experimentation-description {
-      margin-bottom: 40px;
-    }
-    
-    /* A/B Testing Section */
-    .ab-testing {
+    /* Call-to-Action Section */
+    .cta {
       padding: 80px 24px;
+      background: var(--navy);
+      color: var(--white);
+      text-align: center;
+    }
+    
+    .cta-container {
+      max-width: 800px;
+      margin: 0 auto;
+    }
+    
+    /* Footer Section */
+    .footer {
+      padding: 24px;
+      background: var(--gray-100);
+      color: var(--navy);
+      text-align: center;
+    }
+    
+    .footer-container {
+      max-width: 800px;
+      margin: 0 auto;
+    }
+    
+    /* Form Section */
+    .form {
+      padding: 24px;
       background: var(--white);
+      border: 1px solid var(--gray-100);
+      border-radius: 8px;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
     }
     
-    .ab-testing-container {
+    .form-container {
       max-width: 800px;
       margin: 0 auto;
     }
     
-    .ab-testing-header {
-      margin-bottom: 24px;
-    }
-    
-    .ab-testing-description {
-      margin-bottom: 40px;
-    }
-    
-    /* Benefits Calculator Video Series Section */
-    .video-series {
-      padding: 80px 24px;
-      background: var(--gray-50);
-    }
-    
-    .video-series-container {
-      max-width: 800px;
-      margin: 0 auto;
-    }
-    
-    .video-series-header {
-      margin-bottom: 24px;
-    }
-    
-    .video-series-description {
-      margin-bottom: 40px;
-    }
-    
-    /* Benefits Navigator Tool Section */
-    .navigator-tool {
-      padding: 80px 24px;
+    /* Results Section */
+    .results {
+      padding: 24px;
       background: var(--white);
+      border: 1px solid var(--gray-100);
+      border-radius: 8px;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
     }
     
-    .navigator-tool-container {
+    .results-container {
       max-width: 800px;
       margin: 0 auto;
-    }
-    
-    .navigator-tool-header {
-      margin-bottom: 24px;
-    }
-    
-    .navigator-tool-description {
-      margin-bottom: 40px;
-    }
-    
-    /* Radical Overhaul Section */
-    .radical-overhaul {
-      padding: 80px 24px;
-      background: var(--gray-50);
-    }
-    
-    .radical-overhaul-container {
-      max-width: 800px;
-      margin: 0 auto;
-    }
-    
-    .radical-overhaul-header {
-      margin-bottom: 24px;
-    }
-    
-    .radical-overhaul-description {
-      margin-bottom: 40px;
     }
   </style>
 </head>
 <body>
   <nav class="nav">
     <div class="nav-container">
-      <a href="#" class="logo">
+      <a class="logo" href="#">
         <span class="logo-icon">
-          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M0 0h24v3H0z" fill="none"/><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8zm0-14c-3.31 0-6 2.69-6 6s2.69 6 6 6 6-2.69 6-6-2.69-6-6-6z"/></svg>
+          <svg viewBox="0 0 24 24">
+            <path d="M12 2C6.5 2 2 6.5 2 12s4.5 10 10 10 10-4.5 10-10S17.5 2 12 2zm0 18c-4.4 0-8-3.6-8-8s3.6-8 8-8 8 3.6 8 8-3.6 8-8 8zm0-14c-2.21 0-4 1.79-4 4s1.79 4 4 4 4-1.79 4-4-1.79-4-4-4z" />
+          </svg>
         </span>
         Owed
       </a>
-      <a href="#" class="nav-cta">Get Started</a>
+      <a class="nav-cta" href="#">Get Started</a>
     </div>
   </nav>
   <section class="hero">
     <div class="hero-container">
       <h1>Find out what the government owes you</h1>
-      <p>Check your UK benefits entitlement in 2 minutes. £24 billion goes unclaimed every year. Find out what you're owed.</p>
-      <button id="submitBtn">Get Started</button>
+      <p>Check your UK benefits entitlement in 2 minutes. £24 billion goes unclaimed every year.</p>
     </div>
   </section>
-  <section class="experimentation">
-    <div class="experimentation-container">
-      <h2 class="experimentation-header">Experimentation</h2>
-      <p class="experimentation-description">We're constantly experimenting with new features and content to improve your experience.</p>
-      <h3>A/B Testing</h3>
-      <p class="ab-testing-description">We're currently running an A/B testing experiment to compare the effectiveness of four different content marketing strategies:</p>
-      <ul>
-        <li>Personalized content recommendation system</li>
-        <li>Benefits calculator video series</li>
-        <li>Benefits navigator tool</li>
-        <li>Radical overhaul of content strategy, assessment quality, and user experience</li>
-      </ul>
+  <section class="content">
+    <div class="content-container">
+      <h2>Benefits Calculator</h2>
+      <p>Get an estimate of your benefits entitlement in just a few minutes.</p>
+      <form id="benefits-form">
+        <input type="text" id="name" placeholder="Enter your name">
+        <input type="email" id="email" placeholder="Enter your email">
+        <button id="submitBtn" type="submit">Get Started</button>
+        <p id="btnText">Get your benefits estimate now</p>
+        <div id="btnArrow"></div>
+        <div id="btnSpinner"></div>
+        <p id="errorMessage"></p>
+      </form>
     </div>
   </section>
-  <section class="ab-testing">
-    <div class="ab-testing-container">
-      <h2 class="ab-testing-header">A/B Testing</h2>
-      <p class="ab-testing-description">We're using A/B testing to determine which content marketing strategy is most effective in increasing user engagement and conversion rates.</p>
-      <button id="submitBtn">View Results</button>
+  <section class="results">
+    <div class="results-container">
+      <h2>Results</h2>
+      <div id="resultsCard">
+        <div id="resultsContent"></div>
+      </div>
     </div>
   </section>
-  <section class="video-series">
-    <div class="video-series-container">
-      <h2 class="video-series-header">Benefits Calculator Video Series</h2>
-      <p class="video-series-description">Our benefits calculator video series showcases real-life examples, user-generated content, and social proof to increase engagement and conversion rates.</p>
-      <button id="submitBtn">Watch Now</button>
+  <section class="footer">
+    <div class="footer-container">
+      <p>&copy; 2026 Owed. All rights reserved.</p>
+      <p><a href="/legal/privacy.html">Privacy Policy</a> | <a href="/legal/terms.html">Terms of Service</a> | <a href="mailto:hello@owed.co.uk">Contact</a></p>
     </div>
   </section>
-  <section class="navigator-tool">
-    <div class="navigator-tool-container">
-      <h2 class="navigator-tool-header">Benefits Navigator Tool</h2>
-      <p class="navigator-tool-description">Our benefits navigator tool helps users navigate the benefits optimization process with ease.</p>
-      <button id="submitBtn">Try It Out</button>
-    </div>
-  </section>
-  <section class="radical-overhaul">
-    <div class="radical-overhaul-container">
-      <h2 class="radical-overhaul-header">Radical Overhaul</h2>
-      <p class="radical-overhaul-description">We're overhauling our content strategy, assessment quality, and user experience to improve user engagement and conversion rates.</p>
-      <button id="submitBtn">Learn More</button>
-    </div>
-  </section>
-  <footer>
-    <p>&copy; 2026 Owed. All rights reserved.</p>
-    <p><a href="/legal/privacy.html">Privacy Policy</a> | <a href="/legal/terms.html">Terms of Service</a> | <a href="mailto:hello@owed.co.uk">Contact</a></p>
-  </footer>
-  <script>
-    const submitBtn = document.getElementById('submitBtn');
-    submitBtn.addEventListener('click', () => {
-      // Form functionality implementation
-      const resultsCard = document.getElementById('resultsCard');
-      const resultsContent = document.getElementById('resultsContent');
-      const errorMessage = document.getElementById('errorMessage');
-      // API call implementation
-      fetch('/api/assess')
-        .then(response => response.json())
-        .then(data => {
-          resultsContent.textContent = data.results;
-          resultsCard.style.display = 'block';
-          errorMessage.style.display = 'none';
-        })
-        .catch(error => {
-          errorMessage.textContent = error.message;
-          errorMessage.style.display = 'block';
-          resultsCard.style.display = 'none';
-        });
-    });
-  </script>
+  <script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs@3.13.0/dist/tf.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@tensorflow-models/mobilenet@1.0.0/dist/mobilenet.min.js"></script>
+  <script src="script.js"></script>
 </body>
 </html>
