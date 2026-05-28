@@ -261,23 +261,16 @@
     /* How It Works */
     .how-it-works {
       padding: 80px 24px;
-      background: var(--white);
+      background: var(--gray-50);
     }
     
     .how-it-works-container {
-      max-width: 1000px;
+      max-width: 1200px;
       margin: 0 auto;
     }
     
-    .how-it-works-title {
-      font-size: clamp(24px, 3.5vw, 32px);
-      font-weight: 700;
-      color: var(--navy);
-      margin-bottom: 20px;
-    }
-    
     .how-it-works-step {
-      background: var(--gray-50);
+      background: var(--white);
       border: 1px solid var(--gray-100);
       border-radius: 16px;
       padding: 32px;
@@ -314,6 +307,7 @@
       font-weight: 700;
       color: var(--navy);
       margin-bottom: 8px;
+      letter-spacing: -0.02em;
     }
     
     .how-it-works-description {
@@ -322,125 +316,271 @@
       line-height: 1.4;
     }
     
-    /* A/B Testing Framework */
-    <style>
-      .ab-testing {
-        padding: 40px 24px;
-        background: var(--white);
-      }
-      
-      .ab-testing-container {
-        max-width: 1000px;
-        margin: 0 auto;
-      }
-      
-      .ab-testing-title {
-        font-size: clamp(24px, 3.5vw, 32px);
-        font-weight: 700;
-        color: var(--navy);
-        margin-bottom: 20px;
-      }
-      
-      .ab-testing-description {
-        font-size: 16px;
-        color: var(--gray-600);
-        line-height: 1.4;
-      }
-      
-      .ab-testing-button {
-        background: var(--mint);
-        color: var(--white);
-        padding: 16px 32px;
-        border-radius: 12px;
-        text-decoration: none;
-        font-weight: 600;
-        font-size: 18px;
-        transition: all 0.2s ease;
-        box-shadow: 0 4px 14px rgba(0, 200, 150, 0.4);
-      }
-      
-      .ab-testing-button:hover {
-        background: var(--mint-dark);
-        transform: translateY(-2px);
-        box-shadow: 0 6px 20px rgba(0, 200, 150, 0.5);
-      }
-    </style>
+    /* Video Series */
+    .video-series {
+      padding: 80px 24px;
+      background: var(--gray-50);
+    }
     
-    <div class="ab-testing">
-      <div class="ab-testing-container">
-        <h2 class="ab-testing-title">A/B Testing Framework</h2>
-        <p class="ab-testing-description">We're using A/B testing to compare the effectiveness of our benefits calculator video series, benefits navigator tool, and benefits optimization service.</p>
-        <button class="ab-testing-button">Learn More</button>
-      </div>
-    </div>
+    .video-series-container {
+      max-width: 1200px;
+      margin: 0 auto;
+    }
     
-    <script>
-      const abTestingButton = document.querySelector('.ab-testing-button');
-      const resultsCard = document.querySelector('.resultsCard');
-      const btnText = document.querySelector('#btnText');
-      const btnArrow = document.querySelector('#btnArrow');
-      const btnSpinner = document.querySelector('#btnSpinner');
-      const errorMessage = document.querySelector('#errorMessage');
-      
-      abTestingButton.addEventListener('click', () => {
-        // Send request to API to get A/B testing results
-        fetch('/api/assess')
-          .then(response => response.json())
-          .then(data => {
-            // Update results card with A/B testing results
-            resultsCard.innerHTML = `
-              <h2>A/B Testing Results</h2>
-              <p>Benefits Calculator Video Series: ${data.videoSeriesResult}</p>
-              <p>Benefits Navigator Tool: ${data.navigatorToolResult}</p>
-              <p>Benefits Optimization Service: ${data.optimizationServiceResult}</p>
-            `;
-          })
-          .catch(error => {
-            console.error(error);
-            errorMessage.textContent = 'Error fetching A/B testing results';
-          });
-      });
-    </script>
+    .video-series-card {
+      background: var(--white);
+      border: 1px solid var(--gray-100);
+      border-radius: 16px;
+      padding: 32px;
+      text-align: center;
+      transition: all 0.3s ease;
+      margin-bottom: 24px;
+    }
     
-    <div class="resultsCard" id="resultsCard">
-      <h2>A/B Testing Results</h2>
-      <p>Benefits Calculator Video Series: </p>
-      <p>Benefits Navigator Tool: </p>
-      <p>Benefits Optimization Service: </p>
-    </div>
+    .video-series-card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 12px 40px rgba(15, 23, 41, 0.08);
+      border-color: var(--gray-200);
+    }
     
-    <button id="submitBtn" class="submitBtn">
-      <span id="btnText">Submit</span>
-      <span id="btnArrow" class="btnArrow"></span>
-      <span id="btnSpinner" class="btnSpinner"></span>
-    </button>
+    .video-series-icon {
+      width: 56px;
+      height: 56px;
+      background: rgba(0, 200, 150, 0.1);
+      border-radius: 14px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0 auto 20px;
+    }
     
-    <div id="errorMessage" class="errorMessage"></div>
+    .video-series-icon svg {
+      width: 28px;
+      height: 28px;
+      color: var(--mint);
+    }
     
-    <script>
-      const submitBtn = document.querySelector('#submitBtn');
-      const btnText = document.querySelector('#btnText');
-      const btnArrow = document.querySelector('#btnArrow');
-      const btnSpinner = document.querySelector('#btnSpinner');
-      
-      submitBtn.addEventListener('click', () => {
-        // Send request to API to get A/B testing results
-        fetch('/api/assess')
-          .then(response => response.json())
-          .then(data => {
-            // Update results card with A/B testing results
-            resultsCard.innerHTML = `
-              <h2>A/B Testing Results</h2>
-              <p>Benefits Calculator Video Series: ${data.videoSeriesResult}</p>
-              <p>Benefits Navigator Tool: ${data.navigatorToolResult}</p>
-              <p>Benefits Optimization Service: ${data.optimizationServiceResult}</p>
-            `;
-          })
-          .catch(error => {
-            console.error(error);
-            errorMessage.textContent = 'Error fetching A/B testing results';
-          });
-      });
-    </script>
-  </body>
-</html>
+    .video-series-title {
+      font-size: 24px;
+      font-weight: 700;
+      color: var(--navy);
+      margin-bottom: 8px;
+      letter-spacing: -0.02em;
+    }
+    
+    .video-series-description {
+      font-size: 16px;
+      color: var(--gray-600);
+      line-height: 1.4;
+    }
+    
+    /* Benefits Calculator */
+    .benefits-calculator {
+      padding: 80px 24px;
+      background: var(--gray-50);
+    }
+    
+    .benefits-calculator-container {
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+    
+    .benefits-calculator-card {
+      background: var(--white);
+      border: 1px solid var(--gray-100);
+      border-radius: 16px;
+      padding: 32px;
+      text-align: center;
+      transition: all 0.3s ease;
+      margin-bottom: 24px;
+    }
+    
+    .benefits-calculator-card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 12px 40px rgba(15, 23, 41, 0.08);
+      border-color: var(--gray-200);
+    }
+    
+    .benefits-calculator-icon {
+      width: 56px;
+      height: 56px;
+      background: rgba(0, 200, 150, 0.1);
+      border-radius: 14px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0 auto 20px;
+    }
+    
+    .benefits-calculator-icon svg {
+      width: 28px;
+      height: 28px;
+      color: var(--mint);
+    }
+    
+    .benefits-calculator-title {
+      font-size: 24px;
+      font-weight: 700;
+      color: var(--navy);
+      margin-bottom: 8px;
+      letter-spacing: -0.02em;
+    }
+    
+    .benefits-calculator-description {
+      font-size: 16px;
+      color: var(--gray-600);
+      line-height: 1.4;
+    }
+    
+    /* Video Series */
+    .video-series {
+      padding: 80px 24px;
+      background: var(--gray-50);
+    }
+    
+    .video-series-container {
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+    
+    .video-series-card {
+      background: var(--white);
+      border: 1px solid var(--gray-100);
+      border-radius: 16px;
+      padding: 32px;
+      text-align: center;
+      transition: all 0.3s ease;
+      margin-bottom: 24px;
+    }
+    
+    .video-series-card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 12px 40px rgba(15, 23, 41, 0.08);
+      border-color: var(--gray-200);
+    }
+    
+    .video-series-icon {
+      width: 56px;
+      height: 56px;
+      background: rgba(0, 200, 150, 0.1);
+      border-radius: 14px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0 auto 20px;
+    }
+    
+    .video-series-icon svg {
+      width: 28px;
+      height: 28px;
+      color: var(--mint);
+    }
+    
+    .video-series-title {
+      font-size: 24px;
+      font-weight: 700;
+      color: var(--navy);
+      margin-bottom: 8px;
+      letter-spacing: -0.02em;
+    }
+    
+    .video-series-description {
+      font-size: 16px;
+      color: var(--gray-600);
+      line-height: 1.4;
+    }
+    
+    /* Benefits Calculator */
+    .benefits-calculator {
+      padding: 80px 24px;
+      background: var(--gray-50);
+    }
+    
+    .benefits-calculator-container {
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+    
+    .benefits-calculator-card {
+      background: var(--white);
+      border: 1px solid var(--gray-100);
+      border-radius: 16px;
+      padding: 32px;
+      text-align: center;
+      transition: all 0.3s ease;
+      margin-bottom: 24px;
+    }
+    
+    .benefits-calculator-card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 12px 40px rgba(15, 23, 41, 0.08);
+      border-color: var(--gray-200);
+    }
+    
+    .benefits-calculator-icon {
+      width: 56px;
+      height: 56px;
+      background: rgba(0, 200, 150, 0.1);
+      border-radius: 14px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0 auto 20px;
+    }
+    
+    .benefits-calculator-icon svg {
+      width: 28px;
+      height: 28px;
+      color: var(--mint);
+    }
+    
+    .benefits-calculator-title {
+      font-size: 24px;
+      font-weight: 700;
+      color: var(--navy);
+      margin-bottom: 8px;
+      letter-spacing: -0.02em;
+    }
+    
+    .benefits-calculator-description {
+      font-size: 16px;
+      color: var(--gray-600);
+      line-height: 1.4;
+    }
+    
+    /* Contact */
+    .contact {
+      padding: 80px 24px;
+      background: var(--gray-50);
+    }
+    
+    .contact-container {
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+    
+    .contact-card {
+      background: var(--white);
+      border: 1px solid var(--gray-100);
+      border-radius: 16px;
+      padding: 32px;
+      text-align: center;
+      transition: all 0.3s ease;
+      margin-bottom: 24px;
+    }
+    
+    .contact-card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 12px 40px rgba(15, 23, 41, 0.08);
+      border-color: var(--gray-200);
+    }
+    
+    .contact-icon {
+      width: 56px;
+      height: 56px;
+      background: rgba(0, 200, 150, 0.1);
+      border-radius: 14px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin:
