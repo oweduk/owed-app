@@ -15,21 +15,6 @@ def write_memory(memory):
     with open(MEMORY_PATH, "w") as f:
         json.dump(memory, f, indent=2)
 
-    req = urllib.request.Request(
-        GROQ_URL,
-        data=payload,
-        headers={
-            "Content-Type": "application/json",
-            "Authorization": f"Bearer {GROQ_API_KEY}",
-            "User-Agent": "OwedOrchestrator/1.0"
-        },
-        method="POST"
-    )
-
-    with urllib.request.urlopen(req) as response:
-        result = json.loads(response.read().decode("utf-8"))
-        return result["choices"][0]["message"]["content"]
-
 def run():
     memory = read_memory()
     instruction = memory.get("current_agent_instructions", {}).get(
