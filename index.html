@@ -118,469 +118,256 @@
     .hero-container {
       max-width: 800px;
       margin: 0 auto;
-    }
-    
-    .hero-badge {
-      display: inline-flex;
+      display: flex;
+      flex-direction: column;
       align-items: center;
-      gap: 8px;
-      background: rgba(0, 200, 150, 0.1);
-      color: var(--mint-dark);
-      padding: 8px 16px;
-      border-radius: 100px;
-      font-size: 14px;
-      font-weight: 500;
-      margin-bottom: 24px;
     }
     
-    .hero-badge-dot {
-      width: 8px;
-      height: 8px;
-      background: var(--mint);
-      border-radius: 50%;
-      animation: pulse 2s infinite;
-    }
-    
-    @keyframes pulse {
-      0%, 100% { opacity: 1; }
-      50% { opacity: 0.5; }
-    }
-    
-    .hero h1 {
-      font-size: clamp(36px, 6vw, 60px);
+    .hero-title {
+      font-size: 48px;
       font-weight: 700;
-      line-height: 1.1;
-      margin-bottom: 20px;
       color: var(--navy);
-      letter-spacing: -0.02em;
-    }
-    
-    .hero h1 span {
-      color: var(--mint);
+      margin-bottom: 16px;
     }
     
     .hero-subtitle {
-      font-size: clamp(18px, 2.5vw, 22px);
-      color: var(--gray-600);
-      max-width: 600px;
-      margin: 0 auto 32px;
-      line-height: 1.5;
+      font-size: 24px;
+      color: var(--gray-500);
+      margin-bottom: 32px;
     }
     
     .hero-cta {
-      display: inline-flex;
-      align-items: center;
-      gap: 10px;
-      background: var(--mint);
+      background: var(--navy);
       color: var(--white);
-      padding: 16px 32px;
-      border-radius: 12px;
+      padding: 12px 24px;
+      border-radius: 8px;
       text-decoration: none;
-      font-weight: 600;
-      font-size: 18px;
+      font-weight: 500;
+      font-size: 16px;
       transition: all 0.2s ease;
-      box-shadow: 0 4px 14px rgba(0, 200, 150, 0.4);
     }
     
     .hero-cta:hover {
-      background: var(--mint-dark);
-      transform: translateY(-2px);
-      box-shadow: 0 6px 20px rgba(0, 200, 150, 0.5);
-    }
-    
-    .hero-cta svg {
-      width: 20px;
-      height: 20px;
-      transition: transform 0.2s ease;
-    }
-    
-    .hero-cta:hover svg {
-      transform: translateX(4px);
-    }
-    
-    /* Stats Section */
-    .stats {
-      padding: 60px 24px;
-      background: var(--white);
-    }
-    
-    .stats-container {
-      max-width: 1000px;
-      margin: 0 auto;
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-      gap: 24px;
-    }
-    
-    .stat-card {
-      background: var(--gray-50);
-      border: 1px solid var(--gray-100);
-      border-radius: 16px;
-      padding: 32px;
-      text-align: center;
-      transition: all 0.3s ease;
-    }
-    
-    .stat-card:hover {
-      transform: translateY(-4px);
-      box-shadow: 0 12px 40px rgba(15, 23, 41, 0.08);
-      border-color: var(--gray-200);
-    }
-    
-    .stat-icon {
-      width: 56px;
-      height: 56px;
-      background: rgba(0, 200, 150, 0.1);
-      border-radius: 14px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      margin: 0 auto 20px;
-    }
-    
-    .stat-icon svg {
-      width: 28px;
-      height: 28px;
-      color: var(--mint);
-    }
-    
-    .stat-number {
-      font-size: 40px;
-      font-weight: 700;
-      color: var(--navy);
-      margin-bottom: 8px;
-      letter-spacing: -0.02em;
-    }
-    
-    .stat-label {
-      font-size: 16px;
-      color: var(--gray-600);
-      line-height: 1.4;
-    }
-    
-    /* How It Works */
-    .how-it-works {
-      padding: 80px 24px;
-      background: var(--gray-50);
-    }
-    
-    .how-it-works-container {
-      max-width: 1200px;
-      margin: 0 auto;
-    }
-    
-    .how-it-works-step {
-      background: var(--white);
-      border: 1px solid var(--gray-100);
-      border-radius: 16px;
-      padding: 32px;
-      text-align: center;
-      transition: all 0.3s ease;
-      margin-bottom: 24px;
-    }
-    
-    .how-it-works-step:hover {
-      transform: translateY(-4px);
-      box-shadow: 0 12px 40px rgba(15, 23, 41, 0.08);
-      border-color: var(--gray-200);
-    }
-    
-    .how-it-works-icon {
-      width: 56px;
-      height: 56px;
-      background: rgba(0, 200, 150, 0.1);
-      border-radius: 14px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      margin: 0 auto 20px;
-    }
-    
-    .how-it-works-icon svg {
-      width: 28px;
-      height: 28px;
-      color: var(--mint);
-    }
-    
-    .how-it-works-title {
-      font-size: 24px;
-      font-weight: 700;
-      color: var(--navy);
-      margin-bottom: 8px;
-      letter-spacing: -0.02em;
-    }
-    
-    .how-it-works-description {
-      font-size: 16px;
-      color: var(--gray-600);
-      line-height: 1.4;
-    }
-    
-    /* Video Series */
-    .video-series {
-      padding: 80px 24px;
-      background: var(--gray-50);
-    }
-    
-    .video-series-container {
-      max-width: 1200px;
-      margin: 0 auto;
-    }
-    
-    .video-series-card {
-      background: var(--white);
-      border: 1px solid var(--gray-100);
-      border-radius: 16px;
-      padding: 32px;
-      text-align: center;
-      transition: all 0.3s ease;
-      margin-bottom: 24px;
-    }
-    
-    .video-series-card:hover {
-      transform: translateY(-4px);
-      box-shadow: 0 12px 40px rgba(15, 23, 41, 0.08);
-      border-color: var(--gray-200);
-    }
-    
-    .video-series-icon {
-      width: 56px;
-      height: 56px;
-      background: rgba(0, 200, 150, 0.1);
-      border-radius: 14px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      margin: 0 auto 20px;
-    }
-    
-    .video-series-icon svg {
-      width: 28px;
-      height: 28px;
-      color: var(--mint);
-    }
-    
-    .video-series-title {
-      font-size: 24px;
-      font-weight: 700;
-      color: var(--navy);
-      margin-bottom: 8px;
-      letter-spacing: -0.02em;
-    }
-    
-    .video-series-description {
-      font-size: 16px;
-      color: var(--gray-600);
-      line-height: 1.4;
+      background: var(--gray-800);
+      transform: translateY(-1px);
     }
     
     /* Benefits Calculator */
     .benefits-calculator {
       padding: 80px 24px;
-      background: var(--gray-50);
-    }
-    
-    .benefits-calculator-container {
-      max-width: 1200px;
-      margin: 0 auto;
-    }
-    
-    .benefits-calculator-card {
       background: var(--white);
-      border: 1px solid var(--gray-100);
-      border-radius: 16px;
-      padding: 32px;
       text-align: center;
-      transition: all 0.3s ease;
-      margin-bottom: 24px;
     }
     
-    .benefits-calculator-card:hover {
-      transform: translateY(-4px);
-      box-shadow: 0 12px 40px rgba(15, 23, 41, 0.08);
-      border-color: var(--gray-200);
-    }
-    
-    .benefits-calculator-icon {
-      width: 56px;
-      height: 56px;
-      background: rgba(0, 200, 150, 0.1);
-      border-radius: 14px;
+    .calculator-container {
+      max-width: 800px;
+      margin: 0 auto;
       display: flex;
+      flex-direction: column;
       align-items: center;
-      justify-content: center;
-      margin: 0 auto 20px;
     }
     
-    .benefits-calculator-icon svg {
-      width: 28px;
-      height: 28px;
-      color: var(--mint);
-    }
-    
-    .benefits-calculator-title {
+    .calculator-title {
       font-size: 24px;
       font-weight: 700;
       color: var(--navy);
-      margin-bottom: 8px;
-      letter-spacing: -0.02em;
+      margin-bottom: 16px;
     }
     
-    .benefits-calculator-description {
-      font-size: 16px;
-      color: var(--gray-600);
-      line-height: 1.4;
+    .calculator-form {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
     }
     
-    /* Video Series */
-    .video-series {
-      padding: 80px 24px;
-      background: var(--gray-50);
-    }
-    
-    .video-series-container {
-      max-width: 1200px;
-      margin: 0 auto;
-    }
-    
-    .video-series-card {
-      background: var(--white);
-      border: 1px solid var(--gray-100);
-      border-radius: 16px;
-      padding: 32px;
-      text-align: center;
-      transition: all 0.3s ease;
+    .form-group {
       margin-bottom: 24px;
     }
     
-    .video-series-card:hover {
-      transform: translateY(-4px);
-      box-shadow: 0 12px 40px rgba(15, 23, 41, 0.08);
-      border-color: var(--gray-200);
+    .form-label {
+      font-size: 16px;
+      color: var(--gray-500);
+      margin-bottom: 8px;
     }
     
-    .video-series-icon {
-      width: 56px;
-      height: 56px;
-      background: rgba(0, 200, 150, 0.1);
-      border-radius: 14px;
+    .form-input {
+      width: 100%;
+      padding: 12px;
+      border: 1px solid var(--gray-200);
+      border-radius: 8px;
+      font-size: 16px;
+    }
+    
+    .submit-btn {
+      background: var(--navy);
+      color: var(--white);
+      padding: 12px 24px;
+      border-radius: 8px;
+      text-decoration: none;
+      font-weight: 500;
+      font-size: 16px;
+      transition: all 0.2s ease;
+      cursor: pointer;
+    }
+    
+    .submit-btn:hover {
+      background: var(--gray-800);
+      transform: translateY(-1px);
+    }
+    
+    /* Results */
+    .results {
+      padding: 80px 24px;
+      background: var(--white);
+      text-align: center;
+    }
+    
+    .results-container {
+      max-width: 800px;
+      margin: 0 auto;
       display: flex;
+      flex-direction: column;
       align-items: center;
-      justify-content: center;
-      margin: 0 auto 20px;
     }
     
-    .video-series-icon svg {
-      width: 28px;
-      height: 28px;
-      color: var(--mint);
-    }
-    
-    .video-series-title {
+    .results-title {
       font-size: 24px;
       font-weight: 700;
       color: var(--navy);
-      margin-bottom: 8px;
-      letter-spacing: -0.02em;
+      margin-bottom: 16px;
     }
     
-    .video-series-description {
+    .results-content {
       font-size: 16px;
-      color: var(--gray-600);
-      line-height: 1.4;
+      color: var(--gray-500);
+      margin-bottom: 32px;
     }
     
-    /* Benefits Calculator */
-    .benefits-calculator {
-      padding: 80px 24px;
-      background: var(--gray-50);
-    }
-    
-    .benefits-calculator-container {
-      max-width: 1200px;
-      margin: 0 auto;
-    }
-    
-    .benefits-calculator-card {
-      background: var(--white);
-      border: 1px solid var(--gray-100);
-      border-radius: 16px;
-      padding: 32px;
+    /* Footer */
+    .footer {
+      padding: 24px;
+      background: var(--gray-100);
       text-align: center;
-      transition: all 0.3s ease;
-      margin-bottom: 24px;
     }
     
-    .benefits-calculator-card:hover {
-      transform: translateY(-4px);
-      box-shadow: 0 12px 40px rgba(15, 23, 41, 0.08);
-      border-color: var(--gray-200);
-    }
-    
-    .benefits-calculator-icon {
-      width: 56px;
-      height: 56px;
-      background: rgba(0, 200, 150, 0.1);
-      border-radius: 14px;
+    .footer-container {
+      max-width: 800px;
+      margin: 0 auto;
       display: flex;
+      flex-direction: column;
       align-items: center;
-      justify-content: center;
-      margin: 0 auto 20px;
     }
     
-    .benefits-calculator-icon svg {
-      width: 28px;
-      height: 28px;
-      color: var(--mint);
+    .footer-links {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      margin-bottom: 16px;
     }
     
-    .benefits-calculator-title {
-      font-size: 24px;
-      font-weight: 700;
+    .footer-link {
+      font-size: 16px;
       color: var(--navy);
+      text-decoration: none;
       margin-bottom: 8px;
-      letter-spacing: -0.02em;
     }
     
-    .benefits-calculator-description {
-      font-size: 16px;
-      color: var(--gray-600);
-      line-height: 1.4;
+    .footer-link:hover {
+      color: var(--gray-800);
     }
     
-    /* Contact */
-    .contact {
-      padding: 80px 24px;
-      background: var(--gray-50);
+    .footer-copyright {
+      font-size: 14px;
+      color: var(--gray-500);
+      margin-top: 16px;
     }
+  </style>
+</head>
+<body>
+  <header class="nav">
+    <div class="nav-container">
+      <a href="#" class="logo">
+        <span class="logo-icon">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+            <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.42 0-8-3.58-8-8s3.58-8 8-8 8 3.58 8 8-3.58 8-8 8z" />
+          </svg>
+        </span>
+        Owed
+      </a>
+      <a href="#" class="nav-cta">Get Started</a>
+    </div>
+  </header>
+  <main>
+    <section class="hero">
+      <div class="hero-container">
+        <h1 class="hero-title">Find out what the government owes you</h1>
+        <p class="hero-subtitle">Check your UK benefits entitlement in 2 minutes. £24 billion goes unclaimed every year. Find out what you're owed.</p>
+        <a href="#" class="hero-cta">Get Started</a>
+      </div>
+    </section>
+    <section class="benefits-calculator">
+      <div class="calculator-container">
+        <h2 class="calculator-title">Benefits Calculator</h2>
+        <form class="calculator-form">
+          <div class="form-group">
+            <label class="form-label">Name:</label>
+            <input type="text" class="form-input" />
+          </div>
+          <div class="form-group">
+            <label class="form-label">Age:</label>
+            <input type="number" class="form-input" />
+          </div>
+          <button class="submit-btn">Calculate Benefits</button>
+        </form>
+      </div>
+    </section>
+    <section class="results">
+      <div class="results-container">
+        <h2 class="results-title">Your Benefits</h2>
+        <p class="results-content">You are entitled to £X in benefits.</p>
+      </div>
+    </section>
+  </main>
+  <footer class="footer">
+    <div class="footer-container">
+      <div class="footer-links">
+        <a href="#" class="footer-link">Terms of Service</a>
+        <a href="#" class="footer-link">Privacy Policy</a>
+        <a href="#" class="footer-link">Contact</a>
+      </div>
+      <p class="footer-copyright">&copy; 2026 Owed. All rights reserved.</p>
+    </div>
+  </footer>
+  <script>
+    const submitBtn = document.querySelector('.submit-btn');
+    const btnText = document.querySelector('.btnText');
+    const btnArrow = document.querySelector('.btnArrow');
+    const btnSpinner = document.querySelector('.btnSpinner');
+    const resultsCard = document.querySelector('.resultsCard');
+    const resultsContent = document.querySelector('.resultsContent');
+    const errorMessage = document.querySelector('.errorMessage');
     
-    .contact-container {
-      max-width: 1200px;
-      margin: 0 auto;
-    }
-    
-    .contact-card {
-      background: var(--white);
-      border: 1px solid var(--gray-100);
-      border-radius: 16px;
-      padding: 32px;
-      text-align: center;
-      transition: all 0.3s ease;
-      margin-bottom: 24px;
-    }
-    
-    .contact-card:hover {
-      transform: translateY(-4px);
-      box-shadow: 0 12px 40px rgba(15, 23, 41, 0.08);
-      border-color: var(--gray-200);
-    }
-    
-    .contact-icon {
-      width: 56px;
-      height: 56px;
-      background: rgba(0, 200, 150, 0.1);
-      border-radius: 14px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      margin:
+    submitBtn.addEventListener('click', () => {
+      // API call to /api/assess endpoint
+      fetch('/api/assess', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({
+          name: document.querySelector('.form-input').value,
+          age: document.querySelector('.form-input').value
+        })
+      })
+      .then(response => response.json())
+      .then(data => {
+        resultsCard.classList.remove('hidden');
+        resultsContent.textContent = `You are entitled to £${data.benefits} in benefits.`;
+      })
+      .catch(error => {
+        errorMessage.textContent = 'Error: ' + error.message;
+      });
+    });
+  </script>
+</body>
+</html>
