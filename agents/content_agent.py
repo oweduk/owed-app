@@ -3,7 +3,7 @@ import os
 import datetime
 import sys
 sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
-from agents.utils import call_groq
+from agents.utils import call_groq, get_profile, evolve_profile
 
 MEMORY_PATH = "memory/store.json"
 
@@ -19,11 +19,13 @@ def run():
     memory = read_memory()
     instruction = memory.get("current_agent_instructions", {}).get("content_agent", "Write an SEO article about UK benefits entitlement.")
     timestamp = datetime.datetime.utcnow().isoformat()
+    profile = get_profile("content_agent")
 
     print(f"\n=== CONTENT AGENT — {timestamp} ===")
     print(f"Instruction: {instruction}")
 
-    system_prompt = """You are a world-class SEO content writer specialising in UK benefits and welfare.
+    system_prompt = f"""{profile}
+
 You write articles that rank on Google and genuinely help people find money they are owed by the government.
 
 Every article you write:
@@ -54,6 +56,8 @@ Write one complete SEO article now. Make it genuinely useful and compelling."""
     })
 
     write_memory(memory)
+
+    evolve_profile("content_agent", profile, f"Wrote article on instruction: {instruction[:100]}. Article length: {len(article)} chars.")
     print("Article written and saved to memory.")
 
 if __name__ == "__main__":
