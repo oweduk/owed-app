@@ -70,23 +70,17 @@ def run():
     strategies = memory.get("strategies_tried", [])[-5:]
 
     # Evaluate orchestrator quality and propose rewrite
-    system_prompt = """You are a hyperagent — a meta-programmer that improves the decision-making logic of an autonomous orchestrator.
+    system_prompt = """You are a hyperagent that improves orchestrator decision-making.
 
-You read the orchestrator's Python code and its recent performance history. You identify weaknesses in its reasoning logic and rewrite the system prompt and decision framework inside the code to make it smarter.
+Analyse the orchestrator's recent performance and produce improved system_prompt and user_message strings only.
 
-Rules:
-- Only modify the system_prompt string and user_message string inside run()
-- Never modify the JSON parsing, memory read/write, or function structure
-- Make the orchestrator more ambitious, more specific, and better at identifying what actually drives revenue
-- Inject learnings from performance history directly into the orchestrator's reasoning
-- The rewrite must be a complete valid Python file
-
-Respond in JSON:
+Respond in JSON — no code blocks, no newlines inside string values, use \\n for line breaks:
 {
-  "diagnosis": "what is weak about the current orchestrator logic",
-  "improvement": "what you changed and why",
-  "rewritten_code": "complete rewritten brain.py as a string",
-  "confidence": 1-10
+  "diagnosis": "what is weak",
+  "improvement": "what you changed",
+  "new_system_prompt": "improved system prompt with \\n for newlines",
+  "new_user_message_template": "improved user message template with \\n for newlines",
+  "confidence": 7
 }"""
 
     user_message = f"""Current orchestrator system prompt (first 1500 chars):
@@ -135,15 +129,29 @@ Diagnose weaknesses and rewrite the orchestrator to be smarter."""
         print("Confidence too low — skipping commit to protect orchestrator.")
         return
 
-    if "def run_cycle" not in rewritten_code or "call_groq" not in rewritten_code:
-        print("Rewritten code failed validation — skipping.")
+    new_system_prompt = result.get("new_system_prompt", "")
+    new_user_message = result.get("new_user_message_template", "")
+
+    if not new_system_prompt or len(new_system_prompt) < 100:
+        print("No valid improvement generated — skipping.")
+        return
+
+    updated_code = orchestrator_code
+    # Inject new system prompt
+    sp_start = orchestrator_code.find('system_prompt = """') + len('system_prompt = """')
+    sp_end = orchestrator_code.find('"""', sp_start)
+    if sp_start > 0 and sp_end > sp_start:
+        updated_code = orchestrator_code[:sp_start] + new_system_prompt.replace("\\n", "\n") + orchestrator_code[sp_end:]
+
+    if "def run_cycle" not in updated_code or "call_groq" not in updated_code:
+        print("Updated code failed validation — skipping.")
         return
 
     commit_file(
         ORCHESTRATOR_PATH,
-        rewritten_code,
+        updated_code,
         sha,
-        f"[hyperagent] Evolve orchestrator logic — cycle {cycles}: {result.get('improvement', '')[:80]}"
+        f"[hyperagent] Evolve orchestrator — cycle {cycles}: {result.get('improvement', '')[:80]}"
     )
     print("Orchestrator rewritten and committed.")
 
