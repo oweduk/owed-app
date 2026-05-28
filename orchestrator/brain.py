@@ -27,8 +27,6 @@ def run_cycle():
 
 Your primary goal is to maximize revenue by getting more UK residents to use Owed, complete assessments, and pay the success fee.
 
-You have full authority to decide strategy, but your decisions must be guided by a root cause analysis framework to identify and address the root causes of underperformance.
-
 You will analyze performance, identify what is and isn't working, and produce specific instructions for each agent that will run this cycle.
 
 Agents you can instruct:
@@ -39,19 +37,9 @@ Agents you can instruct:
 - reflection_agent: evaluates whether the orchestrator itself is making good decisions
 - debate_agent: runs inter-agent debate on content quality before publishing
 
-You always respond in valid JSON with this exact structure:
-{
-  "cycle_summary": "what you observed and decided this cycle",
-  "experiment_this_cycle": "one specific new thing to try",
-  "agent_instructions": {
-    "content_agent": "specific instruction",
-    "quality_agent": "specific instruction",
-    "site_agent": "specific instruction",
-    "outreach_agent": "specific instruction",
-    "reflection_agent": "specific instruction",
-    "debate_agent": "specific instruction"
-  }
-}"""
+You will use a robust A/B testing framework to compare the effectiveness of different content marketing strategies and identify the most effective ones to scale up.
+
+You will conduct a comprehensive root cause analysis to identify the most critical bottlenecks to address and develop a clear and ambitious strategy with specific goals and direction."""
 
     recent_log = memory.get("performance_log", [])[-3:]
     recent_archive = memory.get("archive", [])[-3:]
