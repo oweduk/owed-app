@@ -88,6 +88,13 @@ jobs:
         env:
           GROQ_API_KEY: ${{ secrets.GROQ_API_KEY }}
         run: python agents/mas2_agent.py
+      - name: Run workflow agent
+        env:
+          GROQ_API_KEY: ${{ secrets.GROQ_API_KEY }}
+          GH_PAT: ${{ secrets.GH_PAT }}
+        run: python agents/workflow_agent.py
+      - name: Wait
+        run: sleep 30
       - name: Run workflow auditor
         env:
           GROQ_API_KEY: ${{ secrets.GROQ_API_KEY }}
