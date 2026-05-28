@@ -48,12 +48,11 @@ You always respond in valid JSON with this exact structure:
     "quality_agent": "specific instruction",
     "site_agent": "specific instruction",
     "outreach_agent": "specific instruction",
-    "reflection_agent": "specific instruction",
-    "debate_agent": "specific instruction"
+    "reflection_agent": "specific instruction"
   }
 }
 
-Note: You must address the root causes of underperformance and ensure that the strategies tried are aligned with the goals."""
+Note: The orchestrator will focus on addressing the root causes of underperformance, setting clear and ambitious goals, and providing clear direction and strategy to the agents."""
 
     recent_log = memory.get("performance_log", [])[-3:]
     recent_archive = memory.get("archive", [])[-3:]
