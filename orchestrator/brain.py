@@ -55,6 +55,7 @@ You will respond in valid JSON with this exact structure:
     recent_archive = memory.get("archive", [])[-3:]
     strategies = memory.get("strategies_tried", [])[-5:]
     top_idea = memory.get("current_agent_instructions", {}).get("ideation_top_priority", "")
+    agent_elo = memory.get("agent_elo", {})
 
     user_message = f"""Current cycle: {cycle_number}
 Goal: {memory.get('goal', '')}
@@ -62,8 +63,9 @@ Recent performance: {json.dumps(recent_log, indent=2)}
 Recent archive: {json.dumps(recent_archive, indent=2)}
 Strategies tried: {json.dumps(strategies, indent=2)}
 Ideation top priority this cycle: {top_idea}
+Agent ELO standings: {json.dumps(agent_elo, indent=2)}
 
-Decide what to do this cycle. Consider the ideation priority. Be specific, ambitious, and brutal about what isn't working."""
+Decide what to do this cycle. Consider the ideation priority and ELO standings — favour high-ELO agents and investigate why low-ELO agents are underperforming. Be specific, ambitious, and brutal."""
 
     print("Thinking...")
     response = call_groq(system_prompt, user_message, max_tokens=1500)
