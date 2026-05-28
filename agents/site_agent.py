@@ -68,6 +68,11 @@ Return complete improved HTML."""
         print("Response not valid HTML — skipping to protect site.")
         return
 
+    # Safety check — only write if significantly different but not drastically shorter
+    if len(improved_html) < len(current_html) * 0.8:
+        print("Improved HTML is significantly shorter than original — skipping to protect site.")
+        return
+
     with open(INDEX_PATH, "w") as f:
         f.write(improved_html)
     print("Site updated.")
