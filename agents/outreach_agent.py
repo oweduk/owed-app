@@ -59,7 +59,7 @@ You respond in valid JSON:
 
     user_message = f"""Instruction this cycle: {instruction}
 
-Previous outreach attempts: {json.dumps(memory.get('outreach_log', [])[-5:], indent=2)}
+Previous outreach attempts: {json.dumps([{{"community": o.get("plan", {}).get("strategy_summary", "")}} for o in memory.get('outreach_log', [])[-3:]], indent=2)}
 
 Generate a fresh outreach plan. Don't repeat communities already hit recently. Be genuinely helpful."""
 
