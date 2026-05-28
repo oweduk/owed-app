@@ -54,7 +54,7 @@ Critical rules — never violate these:
     user_message = f"""Instruction: {instruction}
 VIGIL issues: {json.dumps(vigil_issues, indent=2)}
 Previous improvements: {json.dumps(memory.get('site_improvements', [])[-2:], indent=2)}
-Current HTML (first 6000 chars): {current_html[:6000]}
+Current HTML (first 3000 chars): {current_html[:3000]}
 
 Return complete improved HTML."""
 
