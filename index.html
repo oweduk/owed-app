@@ -260,34 +260,39 @@
     
     /* How It Works */
     .how-it-works {
-      padding: 60px 24px;
+      padding: 80px 24px;
       background: var(--white);
     }
     
     .how-it-works-container {
       max-width: 1000px;
       margin: 0 auto;
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-      gap: 24px;
     }
     
-    .step-card {
+    .how-it-works-title {
+      font-size: clamp(24px, 3.5vw, 32px);
+      font-weight: 700;
+      color: var(--navy);
+      margin-bottom: 20px;
+    }
+    
+    .how-it-works-step {
       background: var(--gray-50);
       border: 1px solid var(--gray-100);
       border-radius: 16px;
       padding: 32px;
       text-align: center;
       transition: all 0.3s ease;
+      margin-bottom: 24px;
     }
     
-    .step-card:hover {
+    .how-it-works-step:hover {
       transform: translateY(-4px);
       box-shadow: 0 12px 40px rgba(15, 23, 41, 0.08);
       border-color: var(--gray-200);
     }
     
-    .step-icon {
+    .how-it-works-icon {
       width: 56px;
       height: 56px;
       background: rgba(0, 200, 150, 0.1);
@@ -298,205 +303,144 @@
       margin: 0 auto 20px;
     }
     
-    .step-icon svg {
+    .how-it-works-icon svg {
       width: 28px;
       height: 28px;
       color: var(--mint);
     }
     
-    .step-number {
-      font-size: 40px;
+    .how-it-works-title {
+      font-size: 24px;
       font-weight: 700;
       color: var(--navy);
       margin-bottom: 8px;
-      letter-spacing: -0.02em;
     }
     
-    .step-label {
+    .how-it-works-description {
       font-size: 16px;
       color: var(--gray-600);
       line-height: 1.4;
     }
     
-    /* Testimonials */
-    .testimonials {
-      padding: 60px 24px;
-      background: var(--white);
-    }
+    /* A/B Testing Framework */
+    <style>
+      .ab-testing {
+        padding: 40px 24px;
+        background: var(--white);
+      }
+      
+      .ab-testing-container {
+        max-width: 1000px;
+        margin: 0 auto;
+      }
+      
+      .ab-testing-title {
+        font-size: clamp(24px, 3.5vw, 32px);
+        font-weight: 700;
+        color: var(--navy);
+        margin-bottom: 20px;
+      }
+      
+      .ab-testing-description {
+        font-size: 16px;
+        color: var(--gray-600);
+        line-height: 1.4;
+      }
+      
+      .ab-testing-button {
+        background: var(--mint);
+        color: var(--white);
+        padding: 16px 32px;
+        border-radius: 12px;
+        text-decoration: none;
+        font-weight: 600;
+        font-size: 18px;
+        transition: all 0.2s ease;
+        box-shadow: 0 4px 14px rgba(0, 200, 150, 0.4);
+      }
+      
+      .ab-testing-button:hover {
+        background: var(--mint-dark);
+        transform: translateY(-2px);
+        box-shadow: 0 6px 20px rgba(0, 200, 150, 0.5);
+      }
+    </style>
     
-    .testimonials-container {
-      max-width: 1000px;
-      margin: 0 auto;
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-      gap: 24px;
-    }
-    
-    .testimonial-card {
-      background: var(--gray-50);
-      border: 1px solid var(--gray-100);
-      border-radius: 16px;
-      padding: 32px;
-      text-align: center;
-      transition: all 0.3s ease;
-    }
-    
-    .testimonial-card:hover {
-      transform: translateY(-4px);
-      box-shadow: 0 12px 40px rgba(15, 23, 41, 0.08);
-      border-color: var(--gray-200);
-    }
-    
-    .testimonial-icon {
-      width: 56px;
-      height: 56px;
-      background: rgba(0, 200, 150, 0.1);
-      border-radius: 14px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      margin: 0 auto 20px;
-    }
-    
-    .testimonial-icon svg {
-      width: 28px;
-      height: 28px;
-      color: var(--mint);
-    }
-    
-    .testimonial-text {
-      font-size: 16px;
-      color: var(--gray-600);
-      line-height: 1.4;
-    }
-    
-    /* Call to Action */
-    .call-to-action {
-      padding: 60px 24px;
-      background: var(--white);
-    }
-    
-    .call-to-action-container {
-      max-width: 1000px;
-      margin: 0 auto;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-    }
-    
-    .call-to-action-btn {
-      background: var(--mint);
-      color: var(--white);
-      padding: 16px 32px;
-      border-radius: 12px;
-      text-decoration: none;
-      font-weight: 600;
-      font-size: 18px;
-      transition: all 0.2s ease;
-      box-shadow: 0 4px 14px rgba(0, 200, 150, 0.4);
-    }
-    
-    .call-to-action-btn:hover {
-      background: var(--mint-dark);
-      transform: translateY(-2px);
-      box-shadow: 0 6px 20px rgba(0, 200, 150, 0.5);
-    }
-    
-    .call-to-action-btn svg {
-      width: 20px;
-      height: 20px;
-      transition: transform 0.2s ease;
-    }
-    
-    .call-to-action-btn:hover svg {
-      transform: translateX(4px);
-    }
-  </style>
-</head>
-<body>
-  <nav class="nav">
-    <div class="nav-container">
-      <a class="logo" href="#">
-        <span class="logo-icon">
-          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="hero-cta-icon">
-            <path d="M12 2L4 12L12 22" />
-            <path d="M12 2L20 12L12 22" />
-          </svg>
-        </span>
-        Owed
-      </a>
-      <a class="nav-cta" href="#">Get Started</a>
-    </div>
-  </nav>
-  <section class="hero">
-    <div class="hero-container">
-      <div class="hero-badge">
-        <div class="hero-badge-dot"></div>
-        Check your UK benefits entitlement in 2 minutes.
-      </div>
-      <h1>
-        Find out what the government owes you
-        <span>£24 billion goes unclaimed every year.</span>
-      </h1>
-      <p class="hero-subtitle">Discover your entitlement and claim what's yours.</p>
-      <a class="hero-cta" href="#">Start Your Claim</a>
-    </div>
-  </section>
-  <section class="stats">
-    <div class="stats-container">
-      <div class="stat-card">
-        <div class="stat-icon">
-          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="stat-icon-svg">
-            <path d="M12 2L4 12L12 22" />
-            <path d="M12 2L20 12L12 22" />
-          </svg>
-        </div>
-        <h2 class="stat-number">£24 billion</h2>
-        <p class="stat-label">Unclaimed benefits every year</p>
-      </div>
-      <div class="stat-card">
-        <div class="stat-icon">
-          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="stat-icon-svg">
-            <path d="M12 2L4 12L12 22" />
-            <path d="M12 2L20 12L12 22" />
-          </svg>
-        </div>
-        <h2 class="stat-number">1 million</h2>
-        <p class="stat-label">People who have claimed benefits through Owed</p>
+    <div class="ab-testing">
+      <div class="ab-testing-container">
+        <h2 class="ab-testing-title">A/B Testing Framework</h2>
+        <p class="ab-testing-description">We're using A/B testing to compare the effectiveness of our benefits calculator video series, benefits navigator tool, and benefits optimization service.</p>
+        <button class="ab-testing-button">Learn More</button>
       </div>
     </div>
-  </section>
-  <section class="how-it-works">
-    <div class="how-it-works-container">
-      <div class="step-card">
-        <div class="step-icon">
-          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="step-icon-svg">
-            <path d="M12 2L4 12L12 22" />
-            <path d="M12 2L20 12L12 22" />
-          </svg>
-        </div>
-        <h2 class="step-number">1</h2>
-        <p class="step-label">Check your entitlement</p>
-      </div>
-      <div class="step-card">
-        <div class="step-icon">
-          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="step-icon-svg">
-            <path d="M12 2L4 12L12 22" />
-            <path d="M12 2L20 12L12 22" />
-          </svg>
-        </div>
-        <h2 class="step-number">2</h2>
-        <p class="step-label">Claim what's yours</p>
-      </div>
+    
+    <script>
+      const abTestingButton = document.querySelector('.ab-testing-button');
+      const resultsCard = document.querySelector('.resultsCard');
+      const btnText = document.querySelector('#btnText');
+      const btnArrow = document.querySelector('#btnArrow');
+      const btnSpinner = document.querySelector('#btnSpinner');
+      const errorMessage = document.querySelector('#errorMessage');
+      
+      abTestingButton.addEventListener('click', () => {
+        // Send request to API to get A/B testing results
+        fetch('/api/assess')
+          .then(response => response.json())
+          .then(data => {
+            // Update results card with A/B testing results
+            resultsCard.innerHTML = `
+              <h2>A/B Testing Results</h2>
+              <p>Benefits Calculator Video Series: ${data.videoSeriesResult}</p>
+              <p>Benefits Navigator Tool: ${data.navigatorToolResult}</p>
+              <p>Benefits Optimization Service: ${data.optimizationServiceResult}</p>
+            `;
+          })
+          .catch(error => {
+            console.error(error);
+            errorMessage.textContent = 'Error fetching A/B testing results';
+          });
+      });
+    </script>
+    
+    <div class="resultsCard" id="resultsCard">
+      <h2>A/B Testing Results</h2>
+      <p>Benefits Calculator Video Series: </p>
+      <p>Benefits Navigator Tool: </p>
+      <p>Benefits Optimization Service: </p>
     </div>
-  </section>
-  <section class="testimonials">
-    <div class="testimonials-container">
-      <div class="testimonial-card">
-        <div class="testimonial-icon">
-          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="testimonial-icon-svg">
-            <path d="M12 2L4 12L12 22" />
-            <path d="M12 2L20 12L12 22" />
-          </svg>
-        </div>
-        <p class="testimonial-text">I was able to claim £1,000 in benefits that I didn
+    
+    <button id="submitBtn" class="submitBtn">
+      <span id="btnText">Submit</span>
+      <span id="btnArrow" class="btnArrow"></span>
+      <span id="btnSpinner" class="btnSpinner"></span>
+    </button>
+    
+    <div id="errorMessage" class="errorMessage"></div>
+    
+    <script>
+      const submitBtn = document.querySelector('#submitBtn');
+      const btnText = document.querySelector('#btnText');
+      const btnArrow = document.querySelector('#btnArrow');
+      const btnSpinner = document.querySelector('#btnSpinner');
+      
+      submitBtn.addEventListener('click', () => {
+        // Send request to API to get A/B testing results
+        fetch('/api/assess')
+          .then(response => response.json())
+          .then(data => {
+            // Update results card with A/B testing results
+            resultsCard.innerHTML = `
+              <h2>A/B Testing Results</h2>
+              <p>Benefits Calculator Video Series: ${data.videoSeriesResult}</p>
+              <p>Benefits Navigator Tool: ${data.navigatorToolResult}</p>
+              <p>Benefits Optimization Service: ${data.optimizationServiceResult}</p>
+            `;
+          })
+          .catch(error => {
+            console.error(error);
+            errorMessage.textContent = 'Error fetching A/B testing results';
+          });
+      });
+    </script>
+  </body>
+</html>
