@@ -3,7 +3,7 @@ import os
 import datetime
 import sys
 sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
-from agents.utils import call_groq
+from agents.utils import call_groq, get_profile, evolve_profile
 
 MEMORY_PATH = "memory/store.json"
 
@@ -19,10 +19,11 @@ def run():
     memory = read_memory()
     timestamp = datetime.datetime.utcnow().isoformat()
     cycles = memory.get("cycles", 0)
+    profile = get_profile("reflection_agent")
 
     print(f"\n=== REFLECTION AGENT (VIGIL) — {timestamp} ===")
 
-    system_prompt = """You are VIGIL — a brutally honest reflection daemon for the Owed autonomous system.
+    system_prompt = f"""{profile}
 
 You evaluate:
 1. Content quality — are the articles genuinely useful, well-written, and SEO-optimised?
@@ -31,7 +32,7 @@ You evaluate:
 4. Agent instruction quality — are the instructions specific enough to produce great output?
 
 You respond in valid JSON:
-{
+{{
   "overall_health": "excellent/good/degrading/critical",
   "content_quality_score": 1-10,
   "content_verdict": "specific honest assessment",
@@ -43,12 +44,11 @@ You respond in valid JSON:
   "rewritten_content_instruction": "improved version of content agent instruction",
   "rewritten_orchestrator_goal": "improved or confirmed goal statement",
   "vigil_summary": "one brutal sentence summarising system state"
-}"""
+}}"""
 
     recent_articles = memory.get("content_outputs", [])[-3:]
     recent_cycles = memory.get("performance_log", [])[-3:]
     current_instructions = memory.get("current_agent_instructions", {})
-
     recent_content_preview = [{"instruction": a.get("instruction"), "preview": a.get("article", "")[:300]} for a in recent_articles]
 
     user_message = f"""Current cycle: {cycles}
@@ -90,6 +90,8 @@ Evaluate everything brutally."""
         print(f"Critical issues flagged: {verdict.get('critical_issues')}")
 
     write_memory(memory)
+
+    evolve_profile("reflection_agent", profile, f"Evaluated system at cycle {cycles}. Health: {verdict.get('overall_health')}. Content score: {verdict.get('content_quality_score')}/10.")
     print("VIGIL cycle complete.")
 
 if __name__ == "__main__":
