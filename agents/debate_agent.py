@@ -3,7 +3,7 @@ import os
 import datetime
 import sys
 sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
-from agents.utils import call_groq, get_profile, evolve_profile
+from agents.utils import call_groq, get_profile, evolve_profile, update_elo, archive_agent_variant
 
 MEMORY_PATH = "memory/store.json"
 
@@ -99,8 +99,32 @@ Respond in JSON:
         memory["content_outputs"][-1]["debate_improved"] = True
         print("Article improved based on debate verdict.")
 
+    # ELO tournament — score both content and debate agents based on outcome
+    quality_score = verdict.get("quality_score", 5)
+    recommendation = verdict.get("publish_recommendation", "")
+
+    # Content agent wins if article is published, loses if discarded
+    content_elo_score = quality_score
+    if recommendation == "discard":
+        content_elo_score = max(1, quality_score - 2)
+    elif recommendation == "publish":
+        content_elo_score = min(10, quality_score + 1)
+
+    # Debate agent scored on critique sharpness — inverse of content score
+    # A good critic catches real problems; if content scores low, critic did well
+    critic_elo_score = 10 - quality_score + 5
+    critic_elo_score = max(1, min(10, critic_elo_score))
+
+    update_elo("content_agent", content_elo_score)
+    update_elo("debate_agent", critic_elo_score)
+
+    # Archive content agent variant after each tournament round
+    archive_agent_variant("content_agent")
+
+    print(f"ELO updated — content_agent: {content_elo_score}/10, debate_agent: {critic_elo_score}/10")
+
     write_memory(memory)
-    evolve_profile("debate_agent", profile, f"Arbitrated article. Score: {verdict.get('quality_score')}/10. Recommendation: {verdict.get('publish_recommendation')}.")
+    evolve_profile("debate_agent", profile, f"Arbitrated article. Score: {quality_score}/10. Recommendation: {recommendation}. Content ELO: {content_elo_score}, Critic ELO: {critic_elo_score}.")
     print("Debate cycle complete.")
 
 if __name__ == "__main__":
