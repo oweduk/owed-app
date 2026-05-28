@@ -125,22 +125,18 @@ def run():
 Your job:
 1. Identify exactly which Python file caused the failure (e.g. agents/content_agent.py)
 2. Identify the exact error — type, line number, and cause
-3. Read the file content provided and produce a complete fixed version
-4. Return ONLY valid JSON in this exact structure:
+
+Return ONLY valid JSON — no code, no markdown:
 {
   "failed_file": "agents/example.py",
   "error_type": "NameError/SyntaxError/etc",
   "error_summary": "one sentence description of the bug",
-  "fix_description": "one sentence description of the fix applied",
-  "fixed_code": "complete fixed Python file content"
+  "fix_description": "one sentence description of exactly what to change"
 }
 
-Rules:
-- Never truncate the fixed_code — return the entire file
-- Never break existing logic — only fix the identified error
-- If you cannot determine the file or fix with confidence, set failed_file to null"""
+If you cannot determine the file, set failed_file to null."""
 
-    user_message = f"""Log output (last 4000 chars):
+    user_message = f"""Log output (last 2000 chars):
 {log_tail}"""
 
     print("Analysing failure...")
@@ -169,18 +165,31 @@ Rules:
     print(f"Error: {diagnosis.get('error_summary')}")
     print(f"Fix: {diagnosis.get('fix_description')}")
 
-    fixed_code = diagnosis.get("fixed_code", "")
-    if not fixed_code.strip():
-        print("No fixed code generated. Skipping.")
+    # Get current file content
+    current_code, sha = get_file_content(failed_file)
+
+    # Ask Groq separately for the fix — no JSON wrapping
+    fix_prompt = """You are a Python expert. Fix the bug described below.
+Return ONLY the complete fixed Python file. No explanation, no markdown fences, no JSON."""
+
+    fixed_code = call_groq(
+        fix_prompt,
+        f"File: {failed_file}\nBug: {diagnosis.get('fix_description')}\n\nCurrent code:\n{current_code[:2500]}",
+        max_tokens=3000,
+        temperature=0.2
+    )
+
+    if not fixed_code or len(fixed_code.strip()) < 50:
+        print("No valid fix generated. Skipping.")
         return
 
-    # Get current file SHA for commit
-    _, sha = get_file_content(failed_file)
+    fixed_code = fixed_code.strip()
+    if fixed_code.startswith("```"):
+        fixed_code = fixed_code.split("\n", 1)[-1]
+        fixed_code = fixed_code.rsplit("```", 1)[0]
 
-    # Commit the fix
     commit_message = f"[meta-programmer] Fix {diagnosis.get('error_type')} in {failed_file} — {diagnosis.get('fix_description')}"
     commit_file(failed_file, fixed_code, sha, commit_message)
-    print(f"Fix committed: {commit_message}")
 
     # Log to memory
     if "meta_programmer_log" not in memory:
