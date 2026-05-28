@@ -3,7 +3,7 @@ import os
 import datetime
 import sys
 sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
-from agents.utils import call_groq, get_profile, evolve_profile
+from agents.utils import call_groq, get_profile, evolve_profile, get_elo, select_parent
 
 MEMORY_PATH = "memory/store.json"
 
@@ -42,8 +42,16 @@ You respond with ONLY the article in markdown. No preamble, no explanation."""
 
 Write one complete SEO article now. Make it genuinely useful and compelling."""
 
+    # Select best historical variant as creative parent
+    parent_code = select_parent("content_agent")
+    current_elo = get_elo("content_agent")
+    parent_context = f"\n\nYour current ELO score is {current_elo}. " + (
+        f"Your best historical variant produced this approach — learn from it:\n{parent_code[:500]}"
+        if parent_code else "No historical variants yet — establish your baseline."
+    )
+
     print("Writing article...")
-    article = call_groq(system_prompt, user_message, max_tokens=1500)
+    article = call_groq(system_prompt, user_message + parent_context, max_tokens=1500)
 
     if "content_outputs" not in memory:
         memory["content_outputs"] = []
