@@ -3,7 +3,7 @@ import os
 import datetime
 import sys
 sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
-from agents.utils import call_groq, get_profile, evolve_profile
+from agents.utils import call_groq, get_profile, evolve_profile, update_elo
 
 MEMORY_PATH = "memory/store.json"
 
@@ -91,7 +91,10 @@ Evaluate everything brutally."""
 
     write_memory(memory)
 
-    evolve_profile("reflection_agent", profile, f"Evaluated system at cycle {cycles}. Health: {verdict.get('overall_health')}. Content score: {verdict.get('content_quality_score')}/10.")
+    content_score = verdict.get("content_quality_score", 5)
+    update_elo("content_agent", content_score)
+    update_elo("debate_agent", verdict.get("quality_score", content_score))
+    evolve_profile("reflection_agent", profile, f"Evaluated system at cycle {cycles}. Health: {verdict.get('overall_health')}. Content score: {content_score}/10.")
     print("VIGIL cycle complete.")
 
 if __name__ == "__main__":
