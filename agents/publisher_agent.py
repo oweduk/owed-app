@@ -2,6 +2,9 @@ import json
 import os
 import datetime
 import re
+import sys
+sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
+from agents.utils import get_profile, evolve_profile
 
 MEMORY_PATH = "memory/store.json"
 BLOG_DIR = "blog"
@@ -104,6 +107,7 @@ def create_post_html(article, title, date):
 
 def run():
     memory = read_memory()
+    profile = get_profile("publisher_agent")
     content_outputs = memory.get("content_outputs", [])
 
     if not content_outputs:
@@ -148,6 +152,7 @@ def run():
         f.write(index_html)
 
     write_memory(memory)
+    evolve_profile("publisher_agent", profile, f"Published {len(new_posts)} new posts. Total posts: {len(memory['published_posts'])}.")
     print(f"\nBlog index updated. {len(new_posts)} new posts published.")
 
 if __name__ == "__main__":
