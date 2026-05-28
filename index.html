@@ -118,7 +118,10 @@
     .hero-container {
       max-width: 800px;
       margin: 0 auto;
-      padding: 0 24px;
+      padding: 40px;
+      background: var(--white);
+      border-radius: 8px;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     }
     
     .hero-title {
@@ -129,20 +132,19 @@
     }
     
     .hero-subtitle {
-      font-size: 24px;
-      font-weight: 400;
-      color: var(--gray-400);
+      font-size: 18px;
+      color: var(--gray-500);
       margin-bottom: 40px;
     }
     
     .hero-btn {
       background: var(--navy);
       color: var(--white);
-      padding: 12px 24px;
+      padding: 10px 20px;
       border-radius: 8px;
       text-decoration: none;
       font-weight: 500;
-      font-size: 16px;
+      font-size: 14px;
       transition: all 0.2s ease;
     }
     
@@ -152,13 +154,16 @@
     }
     
     /* Form Section */
+    .form {
+      padding: 40px;
+      background: var(--white);
+      border-radius: 8px;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    }
+    
     .form-container {
       max-width: 800px;
       margin: 0 auto;
-      padding: 40px 24px;
-      background: var(--white);
-      border: 1px solid var(--gray-100);
-      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
     }
     
     .form-title {
@@ -168,234 +173,96 @@
       margin-bottom: 16px;
     }
     
-    .form-subtitle {
-      font-size: 18px;
-      font-weight: 400;
-      color: var(--gray-400);
-      margin-bottom: 24px;
-    }
-    
-    .form-group {
-      margin-bottom: 24px;
-    }
-    
-    .form-group label {
-      font-size: 18px;
-      font-weight: 400;
-      color: var(--gray-400);
-      margin-bottom: 8px;
-    }
-    
-    .form-group input {
+    .form-input {
       width: 100%;
-      height: 40px;
       padding: 12px;
-      border: 1px solid var(--gray-100);
+      border: 1px solid var(--gray-300);
       border-radius: 8px;
-      font-size: 16px;
-      font-weight: 400;
-      color: var(--navy);
+      margin-bottom: 16px;
     }
     
-    .form-group input:focus {
-      border-color: var(--navy);
-      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-    }
-    
-    .form-btn {
+    .form-submit {
       background: var(--navy);
       color: var(--white);
-      padding: 12px 24px;
+      padding: 10px 20px;
       border-radius: 8px;
       text-decoration: none;
       font-weight: 500;
-      font-size: 16px;
+      font-size: 14px;
       transition: all 0.2s ease;
+      margin-bottom: 16px;
     }
     
-    .form-btn:hover {
+    .form-submit:hover {
       background: var(--gray-800);
       transform: translateY(-1px);
     }
     
-    /* Results Section */
-    .results-container {
-      max-width: 800px;
-      margin: 0 auto;
-      padding: 40px 24px;
-      background: var(--white);
-      border: 1px solid var(--gray-100);
-      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-    }
-    
-    .results-title {
-      font-size: 24px;
-      font-weight: 700;
-      color: var(--navy);
-      margin-bottom: 16px;
-    }
-    
-    .results-subtitle {
-      font-size: 18px;
-      font-weight: 400;
-      color: var(--gray-400);
-      margin-bottom: 24px;
-    }
-    
     .results-card {
       background: var(--white);
-      border: 1px solid var(--gray-100);
       border-radius: 8px;
-      padding: 24px;
-      margin-bottom: 24px;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+      padding: 20px;
+      margin-bottom: 40px;
     }
     
-    .results-card h2 {
-      font-size: 24px;
-      font-weight: 700;
-      color: var(--navy);
-      margin-bottom: 16px;
-    }
-    
-    .results-card p {
+    .results-content {
       font-size: 18px;
-      font-weight: 400;
-      color: var(--gray-400);
-      margin-bottom: 24px;
-    }
-    
-    /* Footer Section */
-    .footer {
-      background: var(--gray-50);
-      padding: 24px;
-      text-align: center;
-    }
-    
-    .footer-link {
-      text-decoration: none;
       color: var(--navy);
-      font-size: 16px;
-      font-weight: 400;
-      margin: 0 8px;
     }
     
-    .footer-link:hover {
-      color: var(--gray-800);
-    }
-    
-    .footer-text {
+    .error-message {
       font-size: 14px;
-      font-weight: 400;
-      color: var(--gray-400);
-      margin-bottom: 16px;
-    }
-    
-    .footer-copyright {
-      font-size: 14px;
-      font-weight: 400;
-      color: var(--gray-400);
+      color: var(--gray-500);
       margin-bottom: 16px;
     }
   </style>
 </head>
 <body>
-  <header class="nav">
+  <nav class="nav">
     <div class="nav-container">
-      <div class="logo">
-        <a href="#" class="logo-icon">
-          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M0 0h24v24H0V0z" fill="none"/><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8zm0-14c-3.31 0-6 2.69-6 6s2.69 6 6 6 6-2.69 6-6-2.69-6-6-6z"/></svg>
-        </a>
-        <a href="#" class="logo-text">Owed</a>
-      </div>
-      <nav>
-        <ul>
-          <li><a href="#" class="nav-cta">Get Started</a></li>
-        </ul>
-      </nav>
+      <a class="logo" href="#">
+        <span class="logo-icon">
+          <svg viewBox="0 0 32 32">
+            <path d="M16 0c-8.836 0-16 7.164-16 16s7.164 16 16 16 16-7.164 16-16-7.164-16-16-16zm0 14c-3.309 0-6-2.691-6-6s2.691-6 6-6 6 2.691 6 6-2.691 6-6 6z" />
+          </svg>
+        </span>
+        <span>Owed</span>
+      </a>
+      <a class="nav-cta" href="#">Get Started</a>
     </div>
-  </header>
-  <main>
-    <section class="hero">
-      <div class="hero-container">
-        <h1 class="hero-title">Find out what the government owes you</h1>
-        <p class="hero-subtitle">Check your UK benefits entitlement in 2 minutes. £24 billion goes unclaimed every year.</p>
-        <a href="#" class="hero-btn">Get Started</a>
-      </div>
-    </section>
-    <section class="form-container">
-      <h2 class="form-title">Check your benefits entitlement</h2>
-      <p class="form-subtitle">Please provide your details below to get started.</p>
+  </nav>
+  <section class="hero">
+    <div class="hero-container">
+      <h1 class="hero-title">Find out what the government owes you</h1>
+      <p class="hero-subtitle">Check your UK benefits entitlement in 2 minutes. £24 billion goes unclaimed every year.</p>
+      <a class="hero-btn" href="#">Get Started</a>
+    </div>
+  </section>
+  <section class="form">
+    <div class="form-container">
+      <h2 class="form-title">Get Your Free Assessment</h2>
       <form>
-        <div class="form-group">
-          <label for="name">Name:</label>
-          <input type="text" id="name" name="name" placeholder="John Doe">
-        </div>
-        <div class="form-group">
-          <label for="email">Email:</label>
-          <input type="email" id="email" name="email" placeholder="john.doe@example.com">
-        </div>
-        <div class="form-group">
-          <label for="phone">Phone:</label>
-          <input type="tel" id="phone" name="phone" placeholder="01234 567890">
-        </div>
-        <button type="submit" id="submitBtn" class="form-btn">Submit</button>
+        <input class="form-input" type="text" id="name" placeholder="Name">
+        <input class="form-input" type="email" id="email" placeholder="Email">
+        <input class="form-input" type="tel" id="phone" placeholder="Phone">
+        <button class="form-submit" id="submitBtn">Get Started</button>
       </form>
-    </section>
-    <section class="results-container">
-      <h2 class="results-title">Your results</h2>
-      <p class="results-subtitle">Based on your details, you may be eligible for the following benefits:</p>
       <div class="results-card">
-        <h2>Benefit 1</h2>
-        <p>You may be eligible for £1,000 per month.</p>
+        <div class="results-content">
+          <p id="resultsContent"></p>
+        </div>
       </div>
-      <div class="results-card">
-        <h2>Benefit 2</h2>
-        <p>You may be eligible for £500 per month.</p>
-      </div>
-    </section>
-  </main>
-  <footer class="footer">
-    <p class="footer-text">Copyright 2026 Owed. All rights reserved.</p>
-    <p class="footer-copyright">Terms of Service | Privacy Policy</p>
-    <p class="footer-link"><a href="/legal/terms.html">Terms of Service</a></p>
-    <p class="footer-link"><a href="/legal/privacy.html">Privacy Policy</a></p>
-    <p class="footer-link"><a href="mailto:hello@owed.co.uk">Contact</a></p>
+      <div class="error-message" id="errorMessage"></div>
+    </div>
+  </section>
+  <footer>
+    <p>&copy; 2026 Owed. All rights reserved.</p>
+    <p><a href="/legal/privacy.html">Privacy Policy</a> | <a href="/legal/terms.html">Terms of Service</a> | <a href="mailto:hello@owed.co.uk">Contact</a></p>
   </footer>
   <script>
-    document.getElementById('submitBtn').addEventListener('click', function(event) {
-      event.preventDefault();
-      var name = document.getElementById('name').value;
-      var email = document.getElementById('email').value;
-      var phone = document.getElementById('phone').value;
-      var btnText = document.getElementById('btnText');
-      var btnArrow = document.getElementById('btnArrow');
-      var btnSpinner = document.getElementById('btnSpinner');
-      var resultsCard = document.getElementById('resultsCard');
-      var resultsContent = document.getElementById('resultsContent');
-      var errorMessage = document.getElementById('errorMessage');
-      btnText.style.display = 'none';
-      btnArrow.style.display = 'none';
-      btnSpinner.style.display = 'block';
-      var xhr = new XMLHttpRequest();
-      xhr.open('POST', '/api/assess', true);
-      xhr.setRequestHeader('Content-Type', 'application/json');
-      xhr.send(JSON.stringify({name: name, email: email, phone: phone}));
-      xhr.onload = function() {
-        if (xhr.status === 200) {
-          btnSpinner.style.display = 'none';
-          resultsCard.style.display = 'block';
-          resultsContent.innerHTML = xhr.responseText;
-        } else {
-          btnSpinner.style.display = 'none';
-          errorMessage.style.display = 'block';
-          errorMessage.innerHTML = 'Error: ' + xhr.statusText;
-        }
-      };
-      xhr.onerror = function() {
-        btnSpinner.style.display = 'none';
-        errorMessage.style.display = 'block';
-        errorMessage.innerHTML = 'Error: ' + xhr.statusText;
-      };
+    document.getElementById('submitBtn').addEventListener('click', function() {
+      // Form submission logic here
     });
   </script>
 </body>
