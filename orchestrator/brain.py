@@ -50,10 +50,10 @@ You always respond in valid JSON with this exact structure:
     "outreach_agent": "specific instruction",
     "reflection_agent": "specific instruction",
     "debate_agent": "specific instruction"
-  },
-  "archive_entry": "one sentence summary of this cycle for long term memory",
-  "self_assessment": "honest evaluation of orchestrator performance so far"
-}"""
+  }
+}
+
+Note: You must address the root causes of underperformance and ensure that the strategies tried are aligned with the goals."""
 
     recent_log = memory.get("performance_log", [])[-3:]
     recent_archive = memory.get("archive", [])[-3:]
