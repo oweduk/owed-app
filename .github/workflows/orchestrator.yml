@@ -25,6 +25,13 @@ jobs:
         run: python agents/meta_programmer.py
       - name: Wait
         run: sleep 45
+      - name: Run hyperagent
+        env:
+          GROQ_API_KEY: ${{ secrets.GROQ_API_KEY }}
+          GH_PAT: ${{ secrets.GH_PAT }}
+        run: python hyperagent.py
+      - name: Wait
+        run: sleep 45
       - name: Run orchestrator
         env:
           GROQ_API_KEY: ${{ secrets.GROQ_API_KEY }}
@@ -73,6 +80,6 @@ jobs:
         run: |
           git config user.name "Owed Orchestrator"
           git config user.email "orchestrator@owed.ai"
-          git add memory/store.json blog/ agents/ index.html
+          git add memory/store.json blog/ agents/ agent_variants/ index.html orchestrator/brain.py
           git diff --staged --quiet || git commit -m "Orchestrator cycle ${{ github.run_number }}"
           git push
