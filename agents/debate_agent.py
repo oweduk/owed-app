@@ -3,7 +3,7 @@ import os
 import datetime
 import sys
 sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
-from agents.utils import call_groq
+from agents.utils import call_groq, get_profile, evolve_profile
 
 MEMORY_PATH = "memory/store.json"
 
@@ -18,6 +18,7 @@ def write_memory(memory):
 def run():
     memory = read_memory()
     timestamp = datetime.datetime.utcnow().isoformat()
+    profile = get_profile("debate_agent")
     outputs = memory.get("content_outputs", [])
 
     if not outputs:
@@ -33,16 +34,18 @@ def run():
 
     critic_prompt = """You are VIGIL. You are brutal and specific. You identify every weakness in this article — poor SEO, weak hook, vague claims, missing call to action, anything that will cause it to fail. No mercy."""
 
-    arbitrator_prompt = """You are the Arbitrator. You have heard both sides. You produce a final verdict and a specific rewritten version of the article's headline and opening paragraph that incorporates the best of both arguments. 
+    arbitrator_prompt = f"""{profile}
+
+You have heard both sides. You produce a final verdict and a specific rewritten version of the article's headline and opening paragraph that incorporates the best of both arguments.
 
 Respond in JSON:
-{
+{{
   "verdict": "which side won and why",
   "quality_score": 1-10,
   "rewritten_headline": "improved headline",
   "rewritten_opening": "improved opening paragraph",
   "publish_recommendation": "publish/rewrite/discard"
-}"""
+}}"""
 
     print("Defender arguing...")
     defense = call_groq(defender_prompt, f"Article to defend:\n{article}", max_tokens=500)
@@ -84,7 +87,6 @@ Respond in JSON:
         if memory["content_outputs"]:
             memory["content_outputs"].pop()
             print("Article discarded based on debate verdict.")
-
     elif verdict.get("rewritten_headline") and memory["content_outputs"]:
         article_text = memory["content_outputs"][-1].get("article", "")
         lines = article_text.split('\n')
@@ -98,6 +100,7 @@ Respond in JSON:
         print("Article improved based on debate verdict.")
 
     write_memory(memory)
+    evolve_profile("debate_agent", profile, f"Arbitrated article. Score: {verdict.get('quality_score')}/10. Recommendation: {verdict.get('publish_recommendation')}.")
     print("Debate cycle complete.")
 
 if __name__ == "__main__":
