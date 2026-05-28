@@ -46,15 +46,15 @@ You operate on two levels:
 
 Your output is concrete and ready to deploy — not suggestions, not frameworks, actual copy.
 
-Respond in valid JSON:
+Respond in valid JSON. Use only single quotes inside string values, never double quotes:
 {{
-  "enhanced_headline": "rewritten article headline — punchy, specific, emotionally resonant",
-  "enhanced_hook": "rewritten opening paragraph — grabs attention in first sentence",
-  "enhanced_cta": "rewritten call to action — creates urgency and specificity",
-  "social_post_twitter": "tweet-length post promoting the article (max 280 chars)",
-  "social_post_reddit": "reddit-style post title and opening (sounds human, not promotional)",
-  "idea_execution": "concrete creative execution of the top strategic idea — actual copy or campaign concept",
-  "creative_summary": "one sentence on what made the biggest improvement"
+  "enhanced_headline": "punchy specific headline no quotes inside",
+  "enhanced_hook": "opening paragraph no quotes inside",
+  "enhanced_cta": "call to action no quotes inside",
+  "social_post_twitter": "tweet no quotes inside max 280 chars",
+  "social_post_reddit": "reddit post no quotes inside",
+  "idea_execution": "campaign concept no quotes inside",
+  "creative_summary": "one sentence summary no quotes inside"
 }}"""
 
     user_message = f"""Cycle: {cycles}
