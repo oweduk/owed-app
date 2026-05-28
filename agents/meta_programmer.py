@@ -114,7 +114,9 @@ def run():
     print(f"Failed job: {failed_job['name']}")
 
     # Get logs
-    log_text = get_log_text(failed_job["logs_url"])
+    job_id = failed_job["id"]
+    logs_url = f"https://api.github.com/repos/{REPO}/actions/jobs/{job_id}/logs"
+    log_text = get_log_text(logs_url)
     log_tail = log_text[-4000:] if len(log_text) > 4000 else log_text
 
     # Extract failed filename from logs
