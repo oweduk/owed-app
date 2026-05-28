@@ -21,7 +21,7 @@ jobs:
       - name: Run meta-programmer
         env:
           GROQ_API_KEY: ${{ secrets.GROQ_API_KEY }}
-          GITHUB_PAT: ${{ secrets.GITHUB_PAT }}
+          GH_PAT: ${{ secrets.GH_PAT }}
         run: python agents/meta_programmer.py
       - name: Wait
         run: sleep 45
