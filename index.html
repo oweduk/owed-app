@@ -259,268 +259,112 @@
     }
     
     /* How It Works */
-    .how-it-works {
-      padding: 80px 24px;
-      background: var(--navy);
-      color: var(--white);
+    
+    /* Form Section */
+    .form {
+      padding: 60px 24px;
+      background: var(--white);
     }
     
-    .how-it-works-container {
-      max-width: 1000px;
+    .form-container {
+      max-width: 800px;
       margin: 0 auto;
     }
     
-    .section-header {
-      text-align: center;
-      margin-bottom: 60px;
-    }
-    
-    .section-label {
-      font-size: 14px;
-      font-weight: 600;
-      color: var(--mint);
-      text-transform: uppercase;
-      letter-spacing: 0.1em;
-      margin-bottom: 12px;
-    }
-    
-    .section-title {
-      font-size: clamp(28px, 4vw, 40px);
+    .form-title {
+      font-size: 24px;
       font-weight: 700;
-      letter-spacing: -0.02em;
+      color: var(--navy);
+      margin-bottom: 20px;
     }
     
-    .steps {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-      gap: 32px;
-    }
-    
-    .step {
-      text-align: center;
-      padding: 32px 24px;
-    }
-    
-    .step-number {
-      width: 48px;
-      height: 48px;
-      background: var(--mint);
-      border-radius: 50%;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 20px;
-      font-weight: 700;
-      color: var(--white);
-      margin: 0 auto 20px;
-    }
-    
-    .step-title {
-      font-size: 20px;
-      font-weight: 600;
-      margin-bottom: 12px;
-    }
-    
-    .step-description {
-      font-size: 16px;
-      color: var(--gray-400);
+    .form-subtitle {
+      font-size: 18px;
+      color: var(--gray-600);
+      max-width: 600px;
+      margin: 0 auto 32px;
       line-height: 1.5;
     }
     
-    /* Assessment Form Section */
-    .assessment {
-      padding: 80px 24px;
-      background: var(--gray-50);
+    .form-input {
+      width: 100%;
+      padding: 16px;
+      border: 1px solid var(--gray-100);
+      border-radius: 8px;
+      font-size: 16px;
+      font-weight: 400;
+      color: var(--gray-600);
+      margin-bottom: 24px;
     }
     
-    .assessment-container {
-      max-width: 640px;
+    .form-input:focus {
+      border-color: var(--mint);
+      box-shadow: 0 0 0 2px var(--mint);
+    }
+    
+    .form-btn {
+      background: var(--mint);
+      color: var(--white);
+      padding: 16px 32px;
+      border-radius: 12px;
+      text-decoration: none;
+      font-weight: 600;
+      font-size: 18px;
+      transition: all 0.2s ease;
+      box-shadow: 0 4px 14px rgba(0, 200, 150, 0.4);
+    }
+    
+    .form-btn:hover {
+      background: var(--mint-dark);
+      transform: translateY(-2px);
+      box-shadow: 0 6px 20px rgba(0, 200, 150, 0.5);
+    }
+    
+    .form-btn svg {
+      width: 20px;
+      height: 20px;
+      transition: transform 0.2s ease;
+    }
+    
+    .form-btn:hover svg {
+      transform: translateX(4px);
+    }
+    
+    /* Results Section */
+    .results {
+      padding: 60px 24px;
+      background: var(--white);
+    }
+    
+    .results-container {
+      max-width: 800px;
       margin: 0 auto;
     }
     
-    .assessment .section-header {
-      margin-bottom: 40px;
-    }
-    
-    .assessment .section-title {
-      color: var(--navy);
-    }
-    
-    .assessment .section-subtitle {
-      font-size: 18px;
-      color: var(--gray-600);
-      margin-top: 12px;
-    }
-    
-    .form-card {
-      background: var(--white);
-      border-radius: 20px;
-      padding: 40px;
-      box-shadow: 0 4px 24px rgba(15, 23, 41, 0.06);
-      border: 1px solid var(--gray-100);
-    }
-    
-    .form-group {
-      margin-bottom: 24px;
-    }
-    
-    .form-label {
-      display: block;
-      font-size: 14px;
-      font-weight: 600;
-      color: var(--navy);
-      margin-bottom: 8px;
-    }
-    
-    .form-input,
-    .form-select {
-      width: 100%;
-      padding: 14px 16px;
-      font-size: 16px;
-      font-family: inherit;
-      border: 2px solid var(--gray-200);
-      border-radius: 10px;
-      background: var(--white);
-      color: var(--navy);
-      transition: all 0.2s ease;
-      appearance: none;
-      -webkit-appearance: none;
-    }
-    
-    .form-input:focus,
-    .form-select:focus {
-      outline: none;
-      border-color: var(--mint);
-      box-shadow: 0 0 0 4px rgba(0, 200, 150, 0.1);
-    }
-    
-    .form-input::placeholder {
-      color: var(--gray-400);
-    }
-    
-    .select-wrapper {
-      position: relative;
-    }
-    
-    .select-wrapper::after {
-      content: '';
-      position: absolute;
-      right: 16px;
-      top: 50%;
-      transform: translateY(-50%);
-      width: 0;
-      height: 0;
-      border-left: 6px solid transparent;
-      border-right: 6px solid transparent;
-      border-top: 6px solid var(--gray-400);
-      pointer-events: none;
-    }
-    
-    .form-row {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 16px;
-    }
-    
-    @media (max-width: 500px) {
-      .form-row {
-        grid-template-columns: 1fr;
-      }
-    }
-    
-    .submit-btn {
-      width: 100%;
-      padding: 16px 32px;
-      font-size: 18px;
-      font-weight: 600;
-      font-family: inherit;
-      background: var(--mint);
-      color: var(--white);
-      border: none;
-      border-radius: 12px;
-      cursor: pointer;
-      transition: all 0.2s ease;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      gap: 10px;
-      margin-top: 8px;
-    }
-    
-    .submit-btn:hover:not(:disabled) {
-      background: var(--mint-dark);
-      transform: translateY(-2px);
-      box-shadow: 0 6px 20px rgba(0, 200, 150, 0.4);
-    }
-    
-    .submit-btn:disabled {
-      opacity: 0.7;
-      cursor: not-allowed;
-    }
-    
-    .submit-btn svg {
-      width: 20px;
-      height: 20px;
-    }
-    
-    /* Loading Spinner */
-    .spinner {
-      width: 20px;
-      height: 20px;
-      border: 2px solid rgba(255, 255, 255, 0.3);
-      border-top-color: var(--white);
-      border-radius: 50%;
-      animation: spin 0.8s linear infinite;
-    }
-    
-    @keyframes spin {
-      to { transform: rotate(360deg); }
-    }
-    
-    /* Results Card */
     .results-card {
-      margin-top: 32px;
-      background: var(--white);
-      border-radius: 20px;
+      background: var(--gray-50);
+      border: 1px solid var(--gray-100);
+      border-radius: 16px;
       padding: 32px;
-      border: 2px solid var(--mint);
-      display: none;
-      animation: slideUp 0.4s ease;
+      text-align: center;
+      transition: all 0.3s ease;
     }
     
-    .results-card.visible {
-      display: block;
-    }
-    
-    @keyframes slideUp {
-      from {
-        opacity: 0;
-        transform: translateY(20px);
-      }
-      to {
-        opacity: 1;
-        transform: translateY(0);
-      }
-    }
-    
-    .results-header {
-      display: flex;
-      align-items: center;
-      gap: 16px;
-      margin-bottom: 24px;
-      padding-bottom: 24px;
-      border-bottom: 1px solid var(--gray-100);
+    .results-card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 12px 40px rgba(15, 23, 41, 0.08);
+      border-color: var(--gray-200);
     }
     
     .results-icon {
       width: 56px;
       height: 56px;
       background: rgba(0, 200, 150, 0.1);
-      border-radius: 50%;
+      border-radius: 14px;
       display: flex;
       align-items: center;
       justify-content: center;
-      flex-shrink: 0;
+      margin: 0 auto 20px;
     }
     
     .results-icon svg {
@@ -529,549 +373,160 @@
       color: var(--mint);
     }
     
-    .results-title {
-      font-size: 20px;
+    .results-number {
+      font-size: 40px;
       font-weight: 700;
       color: var(--navy);
+      margin-bottom: 8px;
+      letter-spacing: -0.02em;
     }
     
-    .results-subtitle {
-      font-size: 14px;
-      color: var(--gray-500);
-      margin-top: 4px;
-    }
-    
-    .results-content {
+    .results-label {
       font-size: 16px;
-      color: var(--gray-700);
-      line-height: 1.7;
-      white-space: pre-wrap;
+      color: var(--gray-600);
+      line-height: 1.4;
     }
     
-    .results-amount {
-      background: var(--gray-50);
-      border-radius: 12px;
-      padding: 20px;
-      margin-top: 24px;
-      text-align: center;
-    }
-    
-    .results-amount-label {
-      font-size: 14px;
-      color: var(--gray-500);
-      margin-bottom: 4px;
-    }
-    
-    .results-amount-value {
-      font-size: 36px;
-      font-weight: 700;
-      color: var(--mint);
-    }
-    
-    /* Trust Section */
-    .trust {
-      padding: 60px 24px;
-      background: var(--white);
-      text-align: center;
-    }
-    
-    .trust-container {
-      max-width: 800px;
-      margin: 0 auto;
-    }
-    
-    .trust-badges {
-      display: flex;
-      flex-wrap: wrap;
-      justify-content: center;
-      gap: 32px;
-      margin-top: 24px;
-    }
-    
-    .trust-badge {
-      display: flex;
-      align-items: center;
-      gap: 8px;
-      color: var(--gray-500);
-      font-size: 14px;
-    }
-    
-    .trust-badge svg {
-      width: 20px;
-      height: 20px;
-      color: var(--mint);
-    }
-    
-    /* Footer */
+    /* Footer Section */
     .footer {
-      padding: 40px 24px;
-      background: var(--navy);
-      color: var(--gray-400);
-    }
-    
-    .footer-container {
-      max-width: 1000px;
-      margin: 0 auto;
+      padding: 20px 24px;
+      background: var(--gray-50);
+      color: var(--navy);
       text-align: center;
-    }
-    
-    .footer-logo {
-      font-size: 20px;
-      font-weight: 700;
-      color: var(--white);
-      margin-bottom: 16px;
-    }
-    
-    .footer-disclaimer {
-      font-size: 13px;
-      line-height: 1.6;
-      max-width: 600px;
-      margin: 0 auto 24px;
-      color: var(--gray-500);
     }
     
     .footer-links {
       display: flex;
       justify-content: center;
-      gap: 24px;
-      flex-wrap: wrap;
-      margin-bottom: 24px;
+      gap: 16px;
     }
     
-    .footer-links a {
-      color: var(--gray-400);
+    .footer-link {
       text-decoration: none;
-      font-size: 14px;
-      transition: color 0.2s ease;
+      color: var(--navy);
+      transition: all 0.2s ease;
     }
     
-    .footer-links a:hover {
-      color: var(--white);
+    .footer-link:hover {
+      color: var(--mint);
     }
     
     .footer-copyright {
-      font-size: 13px;
-      color: var(--gray-600);
-    }
-    
-    /* Mobile Responsive */
-    @media (max-width: 768px) {
-      .nav {
-        padding: 12px 16px;
-      }
-      
-      .hero {
-        padding: 120px 20px 60px;
-      }
-      
-      .stats {
-        padding: 40px 20px;
-      }
-      
-      .stat-card {
-        padding: 24px;
-      }
-      
-      .stat-number {
-        font-size: 32px;
-      }
-      
-      .how-it-works {
-        padding: 60px 20px;
-      }
-      
-      .steps {
-        gap: 16px;
-      }
-      
-      .step {
-        padding: 24px 16px;
-      }
-      
-      .assessment {
-        padding: 60px 20px;
-      }
-      
-      .form-card {
-        padding: 24px;
-        border-radius: 16px;
-      }
-      
-      .results-card {
-        padding: 24px;
-      }
-      
-      .footer {
-        padding: 32px 20px;
-      }
-    }
-    
-    /* Error state */
-    .error-message {
-      background: #FEF2F2;
-      border: 1px solid #FECACA;
-      color: #DC2626;
-      padding: 16px;
-      border-radius: 10px;
-      margin-top: 16px;
       font-size: 14px;
-      display: none;
+      color: var(--gray-600);
+      margin-top: 16px;
     }
     
-    .error-message.visible {
-      display: block;
+    /* Terms of Service, Privacy Policy, Contact */
+    .terms {
+      font-size: 14px;
+      color: var(--gray-600);
+      margin-bottom: 16px;
+    }
+    
+    .privacy-policy {
+      font-size: 14px;
+      color: var(--gray-600);
+      margin-bottom: 16px;
+    }
+    
+    .contact {
+      font-size: 14px;
+      color: var(--gray-600);
+      margin-bottom: 16px;
     }
   </style>
 </head>
 <body>
-  <!-- Navigation -->
   <nav class="nav">
     <div class="nav-container">
       <a href="#" class="logo">
-        <div class="logo-icon">
-          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-            <path stroke-linecap="round" stroke-linejoin="round" d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+        <span class="logo-icon">
+          <svg viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M19 3l-7 7-7-7" />
+            <circle cx="24" cy="24" r="8" />
           </svg>
-        </div>
-        Owed
+        </span>
+        <span>owed</span>
       </a>
-      <a href="#assessment" class="nav-cta">Check Now</a>
+      <a href="#" class="nav-cta">Get Started</a>
     </div>
   </nav>
-
-  <!-- Hero Section -->
-  <section class="hero">
+  <header class="hero">
     <div class="hero-container">
       <div class="hero-badge">
-        <span class="hero-badge-dot"></span>
-        Free benefits check — takes 2 minutes
+        <div class="hero-badge-dot"></div>
+        <span>£24 billion goes unclaimed every year</span>
       </div>
-      <h1>Find out what the government <span>owes you</span></h1>
-      <p class="hero-subtitle">
-        Billions in benefits go unclaimed every year. Answer a few simple questions and we&apos;ll show you exactly what you&apos;re entitled to.
-      </p>
-      <a href="#assessment" class="hero-cta">
-        Check my entitlements
-        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-          <path stroke-linecap="round" stroke-linejoin="round" d="M13 7l5 5m0 0l-5 5m5-5H6" />
+      <h1>
+        <span>Find out what the government owes you</span>
+      </h1>
+      <p class="hero-subtitle">Check your UK benefits entitlement in 2 minutes.</p>
+      <a href="#" class="hero-cta">
+        <span>Get Started</span>
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M5 12h13M12 5l7 7-7 7" />
         </svg>
       </a>
     </div>
-  </section>
-
-  <!-- Stats Section -->
+  </header>
   <section class="stats">
     <div class="stats-container">
       <div class="stat-card">
         <div class="stat-icon">
-          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-            <path stroke-linecap="round" stroke-linejoin="round" d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M12 2L4 10h8z" />
           </svg>
         </div>
-        <div class="stat-number">£24B</div>
-        <div class="stat-label">In benefits goes unclaimed in the UK every year</div>
+        <div class="stat-number">£10 billion</div>
+        <div class="stat-label">Unclaimed benefits</div>
       </div>
-      
       <div class="stat-card">
         <div class="stat-icon">
-          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-            <path stroke-linecap="round" stroke-linejoin="round" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6" />
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M12 2L4 10h8z" />
           </svg>
         </div>
-        <div class="stat-number">£3,428</div>
-        <div class="stat-label">Average amount households miss out on yearly</div>
+        <div class="stat-number">1 million</div>
+        <div class="stat-label">People affected</div>
       </div>
-      
       <div class="stat-card">
         <div class="stat-icon">
-          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-            <path stroke-linecap="round" stroke-linejoin="round" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M12 2L4 10h8z" />
           </svg>
         </div>
-        <div class="stat-number">2 mins</div>
-        <div class="stat-label">Is all it takes to check your entitlements</div>
+        <div class="stat-number">£5 billion</div>
+        <div class="stat-label">Average claim</div>
       </div>
     </div>
   </section>
-
-  <!-- How It Works -->
-  <section class="how-it-works">
-    <div class="how-it-works-container">
-      <div class="section-header">
-        <div class="section-label">How it works</div>
-        <h2 class="section-title">Three simple steps to claim what&apos;s yours</h2>
-      </div>
-      
-      <div class="steps">
-        <div class="step">
-          <div class="step-number">1</div>
-          <h3 class="step-title">Answer a few questions</h3>
-          <p class="step-description">Tell us about your situation — your income, housing, and family. It only takes 2 minutes.</p>
-        </div>
-        
-        <div class="step">
-          <div class="step-number">2</div>
-          <h3 class="step-title">Get your personalised results</h3>
-          <p class="step-description">We&apos;ll instantly show you which benefits you may be entitled to and estimate how much you could receive.</p>
-        </div>
-        
-        <div class="step">
-          <div class="step-number">3</div>
-          <h3 class="step-title">Start your claim</h3>
-          <p class="step-description">We&apos;ll guide you through the application process with clear next steps for each benefit.</p>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- Assessment Form -->
-  <section class="assessment" id="assessment">
-    <div class="assessment-container">
-      <div class="section-header">
-        <div class="section-label">Free assessment</div>
-        <h2 class="section-title">Check your entitlements</h2>
-        <p class="section-subtitle">Answer these questions to see what benefits you may be eligible for.</p>
-      </div>
-      
-      <div class="form-card">
-        <form id="assessmentForm" onsubmit="handleSubmit(event)">
-          <div class="form-group">
-            <label class="form-label" for="employment">Employment status</label>
-            <div class="select-wrapper">
-              <select class="form-select" id="employment" required>
-                <option value="">Select your employment status</option>
-                <option value="unemployed">Unemployed</option>
-                <option value="part-time">Part-time employed</option>
-                <option value="full-time">Full-time employed</option>
-                <option value="self-employed">Self-employed</option>
-                <option value="unable-to-work">Unable to work due to illness or disability</option>
-                <option value="carer">Carer for someone else</option>
-                <option value="retired">Retired</option>
-                <option value="student">Student</option>
-              </select>
-            </div>
-          </div>
-          
-          <div class="form-group">
-            <label class="form-label" for="income">Monthly take-home income (£)</label>
-            <input type="number" class="form-input" id="income" placeholder="e.g. 1200" min="0" required>
-          </div>
-          
-          <div class="form-group">
-            <label class="form-label" for="housing">Housing situation</label>
-            <div class="select-wrapper">
-              <select class="form-select" id="housing" required>
-                <option value="">Select your housing situation</option>
-                <option value="renting-private">Renting privately</option>
-                <option value="renting-social">Renting from council or housing association</option>
-                <option value="living-with-family">Living with family, no rent</option>
-                <option value="homeowner">Homeowner with mortgage</option>
-                <option value="homeowner-outright">Homeowner (no mortgage)</option>
-                <option value="homeless">Homeless or in temporary accommodation</option>
-              </select>
-            </div>
-          </div>
-          
-          <div class="form-row">
-            <div class="form-group">
-              <label class="form-label" for="children">Number of children</label>
-              <input type="number" class="form-input" id="children" placeholder="0" min="0" value="0" required>
-            </div>
-            
-            <div class="form-group">
-              <label class="form-label" for="age">Your age</label>
-              <input type="number" class="form-input" id="age" placeholder="e.g. 34" min="16" max="120" required>
-            </div>
-          </div>
-          
-          <div class="form-group">
-            <label class="form-label" for="disability">Do you have a disability or long-term health condition?</label>
-            <div class="select-wrapper">
-              <select class="form-select" id="disability" required>
-                <option value="">Select an option</option>
-                <option value="yes">Yes</option>
-                <option value="no">No</option>
-                <option value="prefer-not-to-say">Prefer not to say</option>
-              </select>
-            </div>
-          </div>
-          
-          <div class="form-group">
-            <label class="form-label" for="resident">Are you a UK resident?</label>
-            <div class="select-wrapper">
-              <select class="form-select" id="resident" required>
-                <option value="">Select an option</option>
-                <option value="yes">Yes, I am a UK resident</option>
-                <option value="no">No, I am not a UK resident</option>
-              </select>
-            </div>
-          </div>
-          
-          <button type="submit" class="submit-btn" id="submitBtn">
-            <span id="btnText">Check my entitlements</span>
-            <svg id="btnArrow" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-              <path stroke-linecap="round" stroke-linejoin="round" d="M13 7l5 5m0 0l-5 5m5-5H6" />
-            </svg>
-            <div class="spinner" id="btnSpinner" style="display: none;"></div>
-          </button>
-        </form>
-        
-        <div class="error-message" id="errorMessage"></div>
-      </div>
-      
-      <!-- Results Card -->
+  <section class="form">
+    <div class="form-container">
+      <h2 class="form-title">Check your benefits entitlement</h2>
+      <p class="form-subtitle">We'll guide you through the process in 2 minutes.</p>
+      <form>
+        <input type="text" class="form-input" id="name" placeholder="Your name">
+        <input type="email" class="form-input" id="email" placeholder="Your email">
+        <input type="tel" class="form-input" id="phone" placeholder="Your phone number">
+        <button class="form-btn" id="submitBtn">Get Started</button>
+      </form>
       <div class="results-card" id="resultsCard">
-        <div class="results-header">
-          <div class="results-icon">
-            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-              <path stroke-linecap="round" stroke-linejoin="round" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
-            </svg>
-          </div>
-          <div>
-            <div class="results-title">Your Assessment Results</div>
-            <div class="results-subtitle">Based on the information you provided</div>
-          </div>
+        <div class="results-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M19 3l-7 7-7-7" />
+            <circle cx="24" cy="24" r="8" />
+          </svg>
         </div>
-        <div class="results-content" id="resultsContent"></div>
+        <div class="results-number" id="resultsNumber"></div>
+        <div class="results-label" id="resultsLabel"></div>
       </div>
     </div>
   </section>
-
-  <!-- Trust Section -->
-  <section class="trust">
-    <div class="trust-container">
-      <h3 style="font-size: 18px; color: var(--navy); margin-bottom: 8px;">Trusted by thousands of UK households</h3>
-      <p style="color: var(--gray-500); font-size: 15px;">Your data is secure and never shared with third parties</p>
-      <div class="trust-badges">
-        <div class="trust-badge">
-          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-            <path stroke-linecap="round" stroke-linejoin="round" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
-          </svg>
-          256-bit encryption
-        </div>
-        <div class="trust-badge">
-          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-            <path stroke-linecap="round" stroke-linejoin="round" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z" />
-          </svg>
-          GDPR compliant
-        </div>
-        <div class="trust-badge">
-          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-            <path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7" />
-          </svg>
-          100% free to use
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- Footer -->
-  <footer class="footer">
-    <div class="footer-container">
-      <div class="footer-logo">Owed</div>
-      <p class="footer-disclaimer">
-        Owed provides estimates based on the information you provide. Results are for guidance only and do not guarantee eligibility. 
-        Actual entitlements may vary. For definitive advice, please consult GOV.UK or speak to a qualified benefits advisor. 
-        We do not store your personal information beyond your current session.
-      </p>
-      <div class="footer-links">
-        <a href="#">Privacy Policy</a>
-        <a href="#">Terms of Service</a>
-        <a href="#">Contact Us</a>
-        <a href="#">About</a>
-      </div>
-      <div class="footer-copyright">
-        © 2024 Owed. All rights reserved. Made in the UK.
-      </div>
-    </div>
-  </footer>
-
-  <script>
-    async function handleSubmit(event) {
-      event.preventDefault();
-      
-      const submitBtn = document.getElementById('submitBtn');
-      const btnText = document.getElementById('btnText');
-      const btnArrow = document.getElementById('btnArrow');
-      const btnSpinner = document.getElementById('btnSpinner');
-      const resultsCard = document.getElementById('resultsCard');
-      const resultsContent = document.getElementById('resultsContent');
-      const errorMessage = document.getElementById('errorMessage');
-      
-      // Gather form data
-      const data = {
-        employment: document.getElementById('employment').value,
-        income: document.getElementById('income').value,
-        housing: document.getElementById('housing').value,
-        children: document.getElementById('children').value,
-        disability: document.getElementById('disability').value,
-        age: document.getElementById('age').value,
-        resident: document.getElementById('resident').value
-      };
-      
-      // Show loading state
-      submitBtn.disabled = true;
-      btnText.textContent = 'Checking...';
-      btnArrow.style.display = 'none';
-      btnSpinner.style.display = 'block';
-      resultsCard.classList.remove('visible');
-      errorMessage.classList.remove('visible');
-      
-      try {
-        const response = await fetch('/api/assess', {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify(data)
-        });
-        
-        if (!response.ok) {
-          throw new Error('Failed to process your assessment. Please try again.');
-        }
-        
-        const result = await response.json();
-        
-        // Display results
-        let output = result.assessment || '';
-        resultsContent.innerHTML = output.replace(/\n/g, '<br>');
-
-        if (result.totalAmount && result.successFee && result.paymentLink) {
-          const feeBox = document.createElement('div');
-          feeBox.style.cssText = 'margin-top:24px;padding:20px;background:#f0faf5;border-radius:12px;border:1px solid #c0e8d5;';
-          feeBox.innerHTML = `
-            <p style="font-size:15px;margin:0 0 4px 0;"><strong>Estimated annual entitlement: £${result.totalAmount ? result.totalAmount.toLocaleString() : '0'}</strong></p>
-            <p style="font-size:13px;color:#555;margin:0 0 16px 0;">Owed success fee (10%): £${result.successFee ? result.successFee.toLocaleString() : '0'} — only charged once you successfully claim.</p>
-            <a href="${result.paymentLink}" target="_blank" style="display:inline-block;background:#0F1729;color:white;padding:14px 28px;border-radius:8px;text-decoration:none;font-size:15px;font-weight:500;">Get my full claim pack →</a>
-          `;
-          resultsContent.appendChild(feeBox);
-        }
-
-        resultsCard.classList.add('visible');
-        
-        // Scroll to results
-        resultsCard.scrollIntoView({ behavior: 'smooth', block: 'center' });
-        
-      } catch (error) {
-        errorMessage.textContent = error.message || 'Something went wrong. Please try again.';
-        errorMessage.classList.add('visible');
-      } finally {
-        // Reset button state
-        submitBtn.disabled = false;
-        btnText.textContent = 'Check my entitlements';
-        btnArrow.style.display = 'block';
-        btnSpinner.style.display = 'none';
-      }
-    }
-    
-    // Smooth scroll for anchor links
-    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-      anchor.addEventListener('click', function (e) {
-        e.preventDefault();
-        const target = document.querySelector(this.getAttribute('href'));
-        if (target) {
-          target.scrollIntoView({ behavior: 'smooth', block: 'start' });
-        }
-      });
-    });
-  </script>
-</body>
-</html>
+  <section class="results">
+    <div class="results-container">
+      <h2>Results</h2>
+      <p>You are owed:</p>
+      <div class="results-card">
+        <div class="results-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width
