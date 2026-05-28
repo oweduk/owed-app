@@ -95,7 +95,9 @@ Generate fresh ideas. Don't repeat previous suggestions. Be ambitious."""
     memory.setdefault("current_agent_instructions", {})["ideation_top_priority"] = ideas.get("top_priority", "")
 
     write_memory(memory)
-    evolve_profile("ideation_agent", profile, f"Generated {total} ideas. Top priority: {ideas.get('top_priority', '')[:100]}")
+    top = ideas.get('top_priority', '')
+    top_str = top.get('idea', str(top))[:100] if isinstance(top, dict) else str(top)[:100]
+    evolve_profile("ideation_agent", profile, f"Generated {total} ideas. Top priority: {top_str}")
     print("Ideation cycle complete.")
 
 if __name__ == "__main__":
