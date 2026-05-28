@@ -3,7 +3,7 @@ import os
 import datetime
 import sys
 sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
-from agents.utils import call_groq
+from agents.utils import call_groq, get_profile, evolve_profile
 
 MEMORY_PATH = "memory/store.json"
 
@@ -22,11 +22,12 @@ def run():
         "Find 5 UK Reddit communities and forums where people discuss benefits and financial hardship. Write a genuine helpful comment for each that naturally mentions Owed."
     )
     timestamp = datetime.datetime.utcnow().isoformat()
+    profile = get_profile("outreach_agent")
 
     print(f"\n=== OUTREACH AGENT — {timestamp} ===")
     print(f"Instruction: {instruction}")
 
-    system_prompt = """You are an outreach strategist for Owed — a free UK benefits checker at owed-app.vercel.app.
+    system_prompt = f"""{profile}
 
 Your job is to find where desperate people are asking for help with UK benefits online, and craft genuine, helpful responses that naturally introduce Owed as a solution.
 
@@ -34,7 +35,7 @@ You never spam. You never sound like an advertisement. You sound like a helpful 
 
 Communities to target:
 - r/UKPersonalFinance
-- r/DWPHelp  
+- r/DWPHelp
 - r/Benefits
 - r/PovertyFinanceUK
 - r/AskUK
@@ -43,24 +44,18 @@ Communities to target:
 - Netmums
 - Citizens Advice community forums
 
-For each target you produce:
-1. The exact community/thread to post in
-2. A genuine helpful comment (100-150 words) that answers a real question people ask there
-3. A natural mention of owed-app.vercel.app as a free tool to check entitlements
-4. The search query someone would use to find the right thread
-
 You respond in valid JSON:
-{
+{{
   "outreach_targets": [
-    {
+    {{
       "community": "name of community",
       "search_query": "exact search to find the right thread",
       "comment": "the full comment to post",
       "estimated_reach": "how many people likely see this"
-    }
+    }}
   ],
   "strategy_summary": "one sentence on the approach this cycle"
-}"""
+}}"""
 
     user_message = f"""Instruction this cycle: {instruction}
 
@@ -121,6 +116,8 @@ Generate a fresh outreach plan. Don't repeat communities already hit recently. B
         })
 
     write_memory(memory)
+
+    evolve_profile("outreach_agent", profile, f"Generated outreach plan targeting {len(targets)} communities. Strategy: {plan.get('strategy_summary', '')[:100]}")
     print("\nOutreach plan saved to memory.")
 
 if __name__ == "__main__":
