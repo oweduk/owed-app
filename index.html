@@ -118,255 +118,189 @@
     .hero-container {
       max-width: 800px;
       margin: 0 auto;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
     }
     
-    .hero-title {
-      font-size: 48px;
-      font-weight: 700;
-      color: var(--navy);
-      margin-bottom: 16px;
-    }
-    
-    .hero-subtitle {
-      font-size: 24px;
-      color: var(--gray-500);
-      margin-bottom: 32px;
-    }
-    
-    .hero-cta {
-      background: var(--navy);
-      color: var(--white);
-      padding: 12px 24px;
-      border-radius: 8px;
-      text-decoration: none;
-      font-weight: 500;
-      font-size: 16px;
-      transition: all 0.2s ease;
-    }
-    
-    .hero-cta:hover {
-      background: var(--gray-800);
-      transform: translateY(-1px);
-    }
-    
-    /* Benefits Calculator */
-    .benefits-calculator {
+    /* Experimentation Section */
+    .experimentation {
       padding: 80px 24px;
-      background: var(--white);
-      text-align: center;
+      background: var(--gray-50);
     }
     
-    .calculator-container {
+    .experimentation-container {
       max-width: 800px;
       margin: 0 auto;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
     }
     
-    .calculator-title {
-      font-size: 24px;
-      font-weight: 700;
-      color: var(--navy);
-      margin-bottom: 16px;
-    }
-    
-    .calculator-form {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-    }
-    
-    .form-group {
+    .experimentation-header {
       margin-bottom: 24px;
     }
     
-    .form-label {
-      font-size: 16px;
-      color: var(--gray-500);
-      margin-bottom: 8px;
+    .experimentation-description {
+      margin-bottom: 40px;
     }
     
-    .form-input {
-      width: 100%;
-      padding: 12px;
-      border: 1px solid var(--gray-200);
-      border-radius: 8px;
-      font-size: 16px;
-    }
-    
-    .submit-btn {
-      background: var(--navy);
-      color: var(--white);
-      padding: 12px 24px;
-      border-radius: 8px;
-      text-decoration: none;
-      font-weight: 500;
-      font-size: 16px;
-      transition: all 0.2s ease;
-      cursor: pointer;
-    }
-    
-    .submit-btn:hover {
-      background: var(--gray-800);
-      transform: translateY(-1px);
-    }
-    
-    /* Results */
-    .results {
+    /* A/B Testing Section */
+    .ab-testing {
       padding: 80px 24px;
       background: var(--white);
-      text-align: center;
     }
     
-    .results-container {
+    .ab-testing-container {
       max-width: 800px;
       margin: 0 auto;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
     }
     
-    .results-title {
-      font-size: 24px;
-      font-weight: 700;
-      color: var(--navy);
-      margin-bottom: 16px;
+    .ab-testing-header {
+      margin-bottom: 24px;
     }
     
-    .results-content {
-      font-size: 16px;
-      color: var(--gray-500);
-      margin-bottom: 32px;
+    .ab-testing-description {
+      margin-bottom: 40px;
     }
     
-    /* Footer */
-    .footer {
-      padding: 24px;
-      background: var(--gray-100);
-      text-align: center;
+    /* Benefits Calculator Video Series Section */
+    .video-series {
+      padding: 80px 24px;
+      background: var(--gray-50);
     }
     
-    .footer-container {
+    .video-series-container {
       max-width: 800px;
       margin: 0 auto;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
     }
     
-    .footer-links {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      margin-bottom: 16px;
+    .video-series-header {
+      margin-bottom: 24px;
     }
     
-    .footer-link {
-      font-size: 16px;
-      color: var(--navy);
-      text-decoration: none;
-      margin-bottom: 8px;
+    .video-series-description {
+      margin-bottom: 40px;
     }
     
-    .footer-link:hover {
-      color: var(--gray-800);
+    /* Benefits Navigator Tool Section */
+    .navigator-tool {
+      padding: 80px 24px;
+      background: var(--white);
     }
     
-    .footer-copyright {
-      font-size: 14px;
-      color: var(--gray-500);
-      margin-top: 16px;
+    .navigator-tool-container {
+      max-width: 800px;
+      margin: 0 auto;
+    }
+    
+    .navigator-tool-header {
+      margin-bottom: 24px;
+    }
+    
+    .navigator-tool-description {
+      margin-bottom: 40px;
+    }
+    
+    /* Radical Overhaul Section */
+    .radical-overhaul {
+      padding: 80px 24px;
+      background: var(--gray-50);
+    }
+    
+    .radical-overhaul-container {
+      max-width: 800px;
+      margin: 0 auto;
+    }
+    
+    .radical-overhaul-header {
+      margin-bottom: 24px;
+    }
+    
+    .radical-overhaul-description {
+      margin-bottom: 40px;
     }
   </style>
 </head>
 <body>
-  <header class="nav">
+  <nav class="nav">
     <div class="nav-container">
       <a href="#" class="logo">
         <span class="logo-icon">
-          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
-            <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.42 0-8-3.58-8-8s3.58-8 8-8 8 3.58 8 8-3.58 8-8 8z" />
-          </svg>
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M0 0h24v3H0z" fill="none"/><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8zm0-14c-3.31 0-6 2.69-6 6s2.69 6 6 6 6-2.69 6-6-2.69-6-6-6z"/></svg>
         </span>
         Owed
       </a>
       <a href="#" class="nav-cta">Get Started</a>
     </div>
-  </header>
-  <main>
-    <section class="hero">
-      <div class="hero-container">
-        <h1 class="hero-title">Find out what the government owes you</h1>
-        <p class="hero-subtitle">Check your UK benefits entitlement in 2 minutes. £24 billion goes unclaimed every year. Find out what you're owed.</p>
-        <a href="#" class="hero-cta">Get Started</a>
-      </div>
-    </section>
-    <section class="benefits-calculator">
-      <div class="calculator-container">
-        <h2 class="calculator-title">Benefits Calculator</h2>
-        <form class="calculator-form">
-          <div class="form-group">
-            <label class="form-label">Name:</label>
-            <input type="text" class="form-input" />
-          </div>
-          <div class="form-group">
-            <label class="form-label">Age:</label>
-            <input type="number" class="form-input" />
-          </div>
-          <button class="submit-btn">Calculate Benefits</button>
-        </form>
-      </div>
-    </section>
-    <section class="results">
-      <div class="results-container">
-        <h2 class="results-title">Your Benefits</h2>
-        <p class="results-content">You are entitled to £X in benefits.</p>
-      </div>
-    </section>
-  </main>
-  <footer class="footer">
-    <div class="footer-container">
-      <div class="footer-links">
-        <a href="#" class="footer-link">Terms of Service</a>
-        <a href="#" class="footer-link">Privacy Policy</a>
-        <a href="#" class="footer-link">Contact</a>
-      </div>
-      <p class="footer-copyright">&copy; 2026 Owed. All rights reserved.</p>
+  </nav>
+  <section class="hero">
+    <div class="hero-container">
+      <h1>Find out what the government owes you</h1>
+      <p>Check your UK benefits entitlement in 2 minutes. £24 billion goes unclaimed every year. Find out what you're owed.</p>
+      <button id="submitBtn">Get Started</button>
     </div>
+  </section>
+  <section class="experimentation">
+    <div class="experimentation-container">
+      <h2 class="experimentation-header">Experimentation</h2>
+      <p class="experimentation-description">We're constantly experimenting with new features and content to improve your experience.</p>
+      <h3>A/B Testing</h3>
+      <p class="ab-testing-description">We're currently running an A/B testing experiment to compare the effectiveness of four different content marketing strategies:</p>
+      <ul>
+        <li>Personalized content recommendation system</li>
+        <li>Benefits calculator video series</li>
+        <li>Benefits navigator tool</li>
+        <li>Radical overhaul of content strategy, assessment quality, and user experience</li>
+      </ul>
+    </div>
+  </section>
+  <section class="ab-testing">
+    <div class="ab-testing-container">
+      <h2 class="ab-testing-header">A/B Testing</h2>
+      <p class="ab-testing-description">We're using A/B testing to determine which content marketing strategy is most effective in increasing user engagement and conversion rates.</p>
+      <button id="submitBtn">View Results</button>
+    </div>
+  </section>
+  <section class="video-series">
+    <div class="video-series-container">
+      <h2 class="video-series-header">Benefits Calculator Video Series</h2>
+      <p class="video-series-description">Our benefits calculator video series showcases real-life examples, user-generated content, and social proof to increase engagement and conversion rates.</p>
+      <button id="submitBtn">Watch Now</button>
+    </div>
+  </section>
+  <section class="navigator-tool">
+    <div class="navigator-tool-container">
+      <h2 class="navigator-tool-header">Benefits Navigator Tool</h2>
+      <p class="navigator-tool-description">Our benefits navigator tool helps users navigate the benefits optimization process with ease.</p>
+      <button id="submitBtn">Try It Out</button>
+    </div>
+  </section>
+  <section class="radical-overhaul">
+    <div class="radical-overhaul-container">
+      <h2 class="radical-overhaul-header">Radical Overhaul</h2>
+      <p class="radical-overhaul-description">We're overhauling our content strategy, assessment quality, and user experience to improve user engagement and conversion rates.</p>
+      <button id="submitBtn">Learn More</button>
+    </div>
+  </section>
+  <footer>
+    <p>&copy; 2026 Owed. All rights reserved.</p>
+    <p><a href="/legal/privacy.html">Privacy Policy</a> | <a href="/legal/terms.html">Terms of Service</a> | <a href="mailto:hello@owed.co.uk">Contact</a></p>
   </footer>
   <script>
-    const submitBtn = document.querySelector('.submit-btn');
-    const btnText = document.querySelector('.btnText');
-    const btnArrow = document.querySelector('.btnArrow');
-    const btnSpinner = document.querySelector('.btnSpinner');
-    const resultsCard = document.querySelector('.resultsCard');
-    const resultsContent = document.querySelector('.resultsContent');
-    const errorMessage = document.querySelector('.errorMessage');
-    
+    const submitBtn = document.getElementById('submitBtn');
     submitBtn.addEventListener('click', () => {
-      // API call to /api/assess endpoint
-      fetch('/api/assess', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json'
-        },
-        body: JSON.stringify({
-          name: document.querySelector('.form-input').value,
-          age: document.querySelector('.form-input').value
+      // Form functionality implementation
+      const resultsCard = document.getElementById('resultsCard');
+      const resultsContent = document.getElementById('resultsContent');
+      const errorMessage = document.getElementById('errorMessage');
+      // API call implementation
+      fetch('/api/assess')
+        .then(response => response.json())
+        .then(data => {
+          resultsContent.textContent = data.results;
+          resultsCard.style.display = 'block';
+          errorMessage.style.display = 'none';
         })
-      })
-      .then(response => response.json())
-      .then(data => {
-        resultsCard.classList.remove('hidden');
-        resultsContent.textContent = `You are entitled to £${data.benefits} in benefits.`;
-      })
-      .catch(error => {
-        errorMessage.textContent = 'Error: ' + error.message;
-      });
+        .catch(error => {
+          errorMessage.textContent = error.message;
+          errorMessage.style.display = 'block';
+          resultsCard.style.display = 'none';
+        });
     });
   </script>
 </body>
