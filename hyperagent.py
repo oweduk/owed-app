@@ -143,7 +143,7 @@ Diagnose weaknesses and rewrite the orchestrator to be smarter."""
     if sp_start > 0 and sp_end > sp_start:
         updated_code = orchestrator_code[:sp_start] + new_system_prompt.replace("\\n", "\n") + orchestrator_code[sp_end:]
 
-    if "def run_cycle" not in updated_code or "call_groq" not in updated_code:
+    if "def run_cycle" not in updated_code or "call_groq" not in updated_code or "valid JSON" not in updated_code:
         print("Updated code failed validation — skipping.")
         return
 
