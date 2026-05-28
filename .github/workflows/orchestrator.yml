@@ -32,6 +32,12 @@ jobs:
         run: python hyperagent.py
       - name: Wait
         run: sleep 45
+      - name: Run ideation agent
+        env:
+          GROQ_API_KEY: ${{ secrets.GROQ_API_KEY }}
+        run: python agents/ideation_agent.py
+      - name: Wait
+        run: sleep 45
       - name: Run orchestrator
         env:
           GROQ_API_KEY: ${{ secrets.GROQ_API_KEY }}
