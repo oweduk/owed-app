@@ -3,7 +3,7 @@ import os
 import datetime
 import sys
 sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
-from agents.utils import call_groq
+from agents.utils import call_groq, get_profile, evolve_profile
 
 MEMORY_PATH = "memory/store.json"
 AGENTS_DIR = "agents"
@@ -15,21 +15,6 @@ def read_memory():
 def write_memory(memory):
     with open(MEMORY_PATH, "w") as f:
         json.dump(memory, f, indent=2)
-
-    req = urllib.request.Request(
-        GROQ_URL,
-        data=payload,
-        headers={
-            "Content-Type": "application/json",
-            "Authorization": f"Bearer {GROQ_API_KEY}",
-            "User-Agent": "OwedOrchestrator/1.0"
-        },
-        method="POST"
-    )
-
-    with urllib.request.urlopen(req) as response:
-        result = json.loads(response.read().decode("utf-8"))
-        return result["choices"][0]["message"]["content"]
 
 def get_existing_agents():
     try:
@@ -46,11 +31,12 @@ def run():
     timestamp = datetime.datetime.utcnow().isoformat()
     existing_agents = get_existing_agents()
     cycles = memory.get("cycles", 0)
+    profile = get_profile("mas2_agent")
 
     print(f"\n=== MAS² AGENT GENERATOR — {timestamp} ===")
     print(f"Existing agents: {existing_agents}")
 
-    system_prompt = """You are MAS² — a meta-agent that identifies gaps in an autonomous system and generates new Python agents to fill them.
+    system_prompt = f"""{profile}
 
 You are running inside the Owed autonomous system — a UK benefits checker at owed-app.vercel.app that earns a 10% success fee when users claim benefits.
 
@@ -59,25 +45,26 @@ The system goal: maximise revenue autonomously.
 You analyse the current system state, identify the single most valuable missing capability, and generate a complete working Python agent to fill that gap.
 
 Rules for generated agents:
-- Must import json, os, datetime, urllib.request
+- Must import json, os, datetime, sys
+- Must add sys.path.append for relative imports
+- Must import call_groq, get_profile, evolve_profile from agents.utils
 - Must define MEMORY_PATH = "memory/store.json"
-- Must define GROQ_API_KEY = os.environ.get("GROQ_API_KEY")
 - Must define read_memory() and write_memory(memory) functions
 - Must define a run() function as the entry point
 - Must read its instruction from memory["current_agent_instructions"]["<agent_name>"]
 - Must write its results back to memory
-- Must use the same call_groq pattern with User-Agent header
+- Must call get_profile() at start and evolve_profile() at end
 - Must be completely self-contained in one file
 
 You respond in valid JSON:
-{
+{{
   "gap_identified": "what capability is missing",
   "gap_reasoning": "why this gap matters most right now",
   "new_agent_name": "snake_case_name_agent",
   "new_agent_description": "one sentence on what it does",
   "new_agent_code": "complete python code as a string",
   "workflow_instruction": "how to add this agent to the workflow"
-}"""
+}}"""
 
     user_message = f"""Current cycle: {cycles}
 Existing agents: {existing_agents}
@@ -144,6 +131,8 @@ Identify the single most valuable missing agent and generate its complete code."
     memory["current_agent_instructions"][agent_name] = f"Execute your core function: {description}"
 
     write_memory(memory)
+
+    evolve_profile("mas2_agent", profile, f"Identified gap: {gap}. Generated agent: {agent_name}.")
     print(f"\nMAS² cycle complete. New agent {agent_name} generated and saved.")
 
 if __name__ == "__main__":
