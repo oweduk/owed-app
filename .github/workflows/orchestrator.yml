@@ -82,4 +82,5 @@ jobs:
           git config user.email "orchestrator@owed.ai"
           git add memory/store.json blog/ agents/ agent_variants/ index.html orchestrator/brain.py
           git diff --staged --quiet || git commit -m "Orchestrator cycle ${{ github.run_number }}"
+          git pull --rebase origin main
           git push
