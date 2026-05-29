@@ -73,9 +73,8 @@ Return complete improved HTML."""
         print("Improved HTML is significantly shorter than original — skipping to protect site.")
         return
 
-    with open(INDEX_PATH, "w") as f:
-        f.write(improved_html)
-    print("Site updated.")
+    print("Site agent disabled — skipping rewrite to protect site.")
+    return
 
     memory.setdefault("site_improvements", []).append({
         "cycle": cycles, "timestamp": timestamp, "instruction": instruction
