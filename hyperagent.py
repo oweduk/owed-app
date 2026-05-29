@@ -125,7 +125,7 @@ Diagnose weaknesses and rewrite the orchestrator to be smarter."""
     print(f"Confidence: {confidence}/10")
 
     # Only commit if confidence is high enough and code looks valid
-    if confidence < 6:
+    if confidence < 9:
         print("Confidence too low — skipping commit to protect orchestrator.")
         return
 
