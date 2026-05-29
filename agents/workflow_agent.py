@@ -136,7 +136,7 @@ Analyse and evolve the topology."""
     print(f"Changes: {changes}")
     print(f"Confidence: {confidence}/10")
 
-    if confidence < 7:
+    if confidence < 9:
         print("Confidence too low — skipping commit to protect workflow.")
         return
 
