@@ -1035,15 +1035,35 @@
         let output = result.assessment || '';
         resultsContent.innerHTML = output.replace(/\n/g, '<br>');
 
-        if (result.totalAmount && result.successFee && result.paymentLink) {
-          const feeBox = document.createElement('div');
-          feeBox.style.cssText = 'margin-top:24px;padding:20px;background:#f0faf5;border-radius:12px;border:1px solid #c0e8d5;';
-          feeBox.innerHTML = `
-            <p style="font-size:15px;margin:0 0 4px 0;"><strong>Estimated annual entitlement: £${result.totalAmount ? result.totalAmount.toLocaleString() : '0'}</strong></p>
-            <p style="font-size:13px;color:#555;margin:0 0 16px 0;">Owed success fee (10%): £${result.successFee ? result.successFee.toLocaleString() : '0'} — only charged once you successfully claim.</p>
-            <a href="${result.paymentLink}" target="_blank" style="display:inline-block;background:#0F1729;color:white;padding:14px 28px;border-radius:8px;text-decoration:none;font-size:15px;font-weight:500;">Get my full claim pack →</a>
+        if (result.qualified && result.totalAmount) {
+          const leadBox = document.createElement('div');
+          leadBox.style.cssText = 'margin-top:24px;padding:24px;background:#f0faf5;border-radius:12px;border:1px solid #c0e8d5;';
+          leadBox.innerHTML = `
+            <p style="font-size:17px;margin:0 0 8px 0;font-weight:600;color:#0F1729;">You could be entitled to £${result.totalAmount.toLocaleString()} per year</p>
+            <p style="font-size:14px;color:#555;margin:0 0 20px 0;">Would you like a free callback from a specialist who can help you claim every penny?</p>
+            <div id="leadForm">
+              <input type="text" id="leadName" placeholder="Your name" style="width:100%;padding:12px;border:2px solid #E2E8F0;border-radius:8px;font-size:15px;margin-bottom:12px;box-sizing:border-box;">
+              <input type="tel" id="leadPhone" placeholder="Your phone number" style="width:100%;padding:12px;border:2px solid #E2E8F0;border-radius:8px;font-size:15px;margin-bottom:12px;box-sizing:border-box;">
+              <input type="email" id="leadEmail" placeholder="Your email (optional)" style="width:100%;padding:12px;border:2px solid #E2E8F0;border-radius:8px;font-size:15px;margin-bottom:16px;box-sizing:border-box;">
+              <button onclick="submitLead(${result.totalAmount})" style="width:100%;padding:14px;background:#00C896;color:white;border:none;border-radius:8px;font-size:16px;font-weight:600;cursor:pointer;">Yes, connect me with a specialist →</button>
+              <p style="font-size:12px;color:#94A3B8;margin:12px 0 0;text-align:center;">Free service. No obligation. Your details are never sold.</p>
+            </div>
+            <div id="leadSuccess" style="display:none;text-align:center;padding:20px 0;">
+              <p style="font-size:18px;font-weight:600;color:#00C896;">✓ You're all set</p>
+              <p style="font-size:14px;color:#555;">A specialist will call you within 24 hours to help you start your claim.</p>
+            </div>
           `;
-          resultsContent.appendChild(feeBox);
+          resultsContent.appendChild(leadBox);
+
+          window._assessmentData = {
+            assessment: result.assessment,
+            totalAmount: result.totalAmount,
+            employment: document.getElementById('employment').value,
+            housing: document.getElementById('housing').value,
+            children: document.getElementById('children').value,
+            disability: document.getElementById('disability').value,
+            age: document.getElementById('age').value
+          };
         }
 
         resultsCard.classList.add('visible');
@@ -1073,6 +1093,29 @@
         }
       });
     });
+    async function submitLead(totalAmount) {
+      const name = document.getElementById('leadName').value.trim();
+      const phone = document.getElementById('leadPhone').value.trim();
+      const email = document.getElementById('leadEmail').value.trim();
+      const data = window._assessmentData || {};
+
+      if (!name || !phone) {
+        alert('Please enter your name and phone number.');
+        return;
+      }
+
+      try {
+        await fetch('/api/capture-lead', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ name, phone, email, totalAmount, ...data })
+        });
+        document.getElementById('leadForm').style.display = 'none';
+        document.getElementById('leadSuccess').style.display = 'block';
+      } catch (error) {
+        alert('Something went wrong. Please try again.');
+      }
+    }
   </script>
 </body>
 </html>
