@@ -3,6 +3,13 @@ export default async function handler(req, res) {
 
   const { employment, income, housing, children, disability, age, resident } = req.body;
 
+  if (resident === 'no') {
+    return res.status(200).json({ 
+      assessment: 'Unfortunately, Owed is only available to UK residents. If you move to the UK in future, we\'d love to help you find what you\'re entitled to.',
+      qualified: false
+    });
+  }
+
   const systemPrompt = `You are an expert UK benefits advisor with complete knowledge of the current benefits system. Your job is to assess someone's situation and tell them clearly and specifically what they are likely entitled to claim.
 
 You know the full details of:
@@ -69,17 +76,15 @@ Format your response clearly with each benefit on its own line.`;
 
     const totalMatch = rawAssessment.match(/TOTAL_AMOUNT:(\d+)/);
     const totalAmount = totalMatch ? parseInt(totalMatch[1]) : null;
-    const successFee = totalAmount ? Math.round(totalAmount * 0.10) : null;
-
     const assessment = rawAssessment.replace(/TOTAL_AMOUNT:\s*\d+/g, '').trim();
+    const qualified = totalAmount !== null && totalAmount > 0;
 
     res.status(200).json({ 
       assessment,
       totalAmount,
-      successFee,
-      paymentLink: process.env.STRIPE_PAYMENT_LINK
+      qualified
     });
   } catch (error) {
-    res.status(500).json({ assessment: 'Something went wrong. Please try again.' });
+    res.status(500).json({ assessment: 'Something went wrong. Please try again.', qualified: false });
   }
 }
