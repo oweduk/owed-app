@@ -8,6 +8,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>💷</text></svg>">
   <style>
     *, *::before, *::after {
       box-sizing: border-box;
@@ -548,24 +549,94 @@
       white-space: pre-wrap;
     }
 
-    .results-amount {
+    /* Lead Capture Box */
+    .lead-capture-box {
+      margin-top: 24px;
+      padding: 24px;
       background: var(--gray-50);
       border-radius: 12px;
-      padding: 20px;
-      margin-top: 24px;
-      text-align: center;
+      border: 1px solid var(--gray-200);
     }
 
-    .results-amount-label {
-      font-size: 14px;
-      color: var(--gray-500);
-      margin-bottom: 4px;
+    .lead-capture-box .lead-amount {
+      font-size: 15px;
+      font-weight: 600;
+      color: var(--navy);
+      margin: 0 0 4px 0;
     }
 
-    .results-amount-value {
-      font-size: 36px;
-      font-weight: 700;
+    .lead-capture-box .lead-amount span {
       color: var(--mint);
+    }
+
+    .lead-capture-box .lead-subtitle {
+      font-size: 14px;
+      color: var(--gray-600);
+      margin: 0 0 20px 0;
+    }
+
+    .lead-fields {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+
+    .lead-fields input {
+      padding: 12px 14px;
+      font-size: 15px;
+      font-family: inherit;
+      border: 2px solid var(--gray-200);
+      border-radius: 8px;
+      outline: none;
+      background: var(--white);
+      color: var(--navy);
+      transition: border-color 0.2s ease;
+    }
+
+    .lead-fields input:focus {
+      border-color: var(--mint);
+      box-shadow: 0 0 0 3px rgba(0, 200, 150, 0.1);
+    }
+
+    .lead-fields input::placeholder {
+      color: var(--gray-400);
+    }
+
+    .lead-submit-btn {
+      padding: 14px;
+      font-size: 16px;
+      font-weight: 600;
+      font-family: inherit;
+      background: var(--navy);
+      color: var(--white);
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: all 0.2s ease;
+    }
+
+    .lead-submit-btn:hover:not(:disabled) {
+      background: var(--gray-800);
+      transform: translateY(-1px);
+    }
+
+    .lead-submit-btn:disabled {
+      opacity: 0.7;
+      cursor: not-allowed;
+    }
+
+    .lead-disclaimer {
+      font-size: 12px;
+      color: var(--gray-400);
+      margin: 12px 0 0 0;
+    }
+
+    .lead-success {
+      text-align: center;
+      color: var(--mint);
+      font-weight: 600;
+      font-size: 16px;
+      padding: 8px 0;
     }
 
     /* Trust Section */
@@ -970,23 +1041,26 @@
     <div class="footer-container">
       <div class="footer-logo">Owed</div>
       <p class="footer-disclaimer">
-        Owed provides estimates based on the information you provide. Results are for guidance only and do not guarantee eligibility. 
-        Actual entitlements may vary. For definitive advice, please consult GOV.UK or speak to a qualified benefits advisor. 
+        Owed provides estimates based on the information you provide. Results are for guidance only and do not guarantee eligibility.
+        Actual entitlements may vary. For definitive advice, please consult GOV.UK or speak to a qualified benefits advisor.
         We do not store your personal information beyond your current session.
       </p>
       <div class="footer-links">
         <a href="/legal/privacy.html">Privacy Policy</a>
         <a href="/legal/terms.html">Terms of Service</a>
-        <a href="mailto:hello@owed.co.uk">Contact Us</a>
-        <a href="#about">About</a>
+        <a href="mailto:useowed@gmail.com">Contact Us</a>
       </div>
       <div class="footer-copyright">
-        © 2026 Owed. All rights reserved. Made in the UK.
+        © 2025 Owed. All rights reserved. Made in the UK.
       </div>
     </div>
   </footer>
 
   <script>
+    // Stores last submission data for lead capture
+    var _lastFormData = {};
+    var _lastTotalAmount = null;
+
     async function handleSubmit(event) {
       event.preventDefault();
 
@@ -1009,6 +1083,9 @@
         resident: document.getElementById('resident').value
       };
 
+      // Store for lead capture
+      _lastFormData = data;
+
       // Show loading state
       submitBtn.disabled = true;
       btnText.textContent = 'Checking...';
@@ -1030,56 +1107,84 @@
 
         const result = await response.json();
 
-        // Display results
-        resultsContent.textContent = result.assessment;
+        // Store total amount for lead capture
+        _lastTotalAmount = result.totalAmount || null;
+
+        // Display assessment text
         let output = result.assessment || '';
         resultsContent.innerHTML = output.replace(/\n/g, '<br>');
 
-        if (result.qualified && result.totalAmount) {
+        // Append lead capture form if we have a total amount
+        if (result.totalAmount) {
           const leadBox = document.createElement('div');
-          leadBox.style.cssText = 'margin-top:24px;padding:24px;background:#f0faf5;border-radius:12px;border:1px solid #c0e8d5;';
-          leadBox.innerHTML = `
-            <p style="font-size:17px;margin:0 0 8px 0;font-weight:600;color:#0F1729;">You could be entitled to £${result.totalAmount.toLocaleString()} per year</p>
-            <p style="font-size:14px;color:#555;margin:0 0 20px 0;">Would you like a free callback from a specialist who can help you claim every penny?</p>
-            <div id="leadForm">
-              <input type="text" id="leadName" placeholder="Your name" style="width:100%;padding:12px;border:2px solid #E2E8F0;border-radius:8px;font-size:15px;margin-bottom:12px;box-sizing:border-box;">
-              <input type="tel" id="leadPhone" placeholder="Your phone number" style="width:100%;padding:12px;border:2px solid #E2E8F0;border-radius:8px;font-size:15px;margin-bottom:12px;box-sizing:border-box;">
-              <input type="email" id="leadEmail" placeholder="Your email (optional)" style="width:100%;padding:12px;border:2px solid #E2E8F0;border-radius:8px;font-size:15px;margin-bottom:16px;box-sizing:border-box;">
-              <button onclick="submitLead(${result.totalAmount})" style="width:100%;padding:14px;background:#00C896;color:white;border:none;border-radius:8px;font-size:16px;font-weight:600;cursor:pointer;">Yes, connect me with a specialist →</button>
-              <p style="font-size:12px;color:#94A3B8;margin:12px 0 0;text-align:center;">Free service. No obligation. Your details are never sold.</p>
-            </div>
-            <div id="leadSuccess" style="display:none;text-align:center;padding:20px 0;">
-              <p style="font-size:18px;font-weight:600;color:#00C896;">✓ You're all set</p>
-              <p style="font-size:14px;color:#555;">A specialist will call you within 24 hours to help you start your claim.</p>
-            </div>
-          `;
+          leadBox.className = 'lead-capture-box';
+          leadBox.id = 'leadCaptureBox';
+          leadBox.innerHTML =
+            '<p class="lead-amount">Estimated annual entitlement: <span>£' + result.totalAmount.toLocaleString() + '</span></p>' +
+            '<p class="lead-subtitle">A specialist welfare rights adviser can help you claim this. Free callback — no fees, no obligation.</p>' +
+            '<div class="lead-fields" id="leadFields">' +
+              '<input type="text" id="leadName" placeholder="Your full name" autocomplete="name">' +
+              '<input type="tel" id="leadPhone" placeholder="Phone number" autocomplete="tel">' +
+              '<input type="email" id="leadEmail" placeholder="Email address (optional)" autocomplete="email">' +
+              '<button class="lead-submit-btn" id="leadSubmitBtn" onclick="submitLead()">Get my free callback &rarr;</button>' +
+            '</div>' +
+            '<p class="lead-disclaimer">By submitting you agree to be contacted by a specialist adviser. No spam, no commitment.</p>';
           resultsContent.appendChild(leadBox);
-
-          window._assessmentData = {
-            assessment: result.assessment,
-            totalAmount: result.totalAmount,
-            employment: document.getElementById('employment').value,
-            housing: document.getElementById('housing').value,
-            children: document.getElementById('children').value,
-            disability: document.getElementById('disability').value,
-            age: document.getElementById('age').value
-          };
         }
 
         resultsCard.classList.add('visible');
-
-        // Scroll to results
         resultsCard.scrollIntoView({ behavior: 'smooth', block: 'center' });
 
       } catch (error) {
         errorMessage.textContent = error.message || 'Something went wrong. Please try again.';
         errorMessage.classList.add('visible');
       } finally {
-        // Reset button state
         submitBtn.disabled = false;
         btnText.textContent = 'Check my entitlements';
         btnArrow.style.display = 'block';
         btnSpinner.style.display = 'none';
+      }
+    }
+
+    async function submitLead() {
+      const name = document.getElementById('leadName').value.trim();
+      const phone = document.getElementById('leadPhone').value.trim();
+      const email = document.getElementById('leadEmail').value.trim();
+
+      if (!name || !phone) {
+        document.getElementById('leadName').style.borderColor = name ? '' : '#DC2626';
+        document.getElementById('leadPhone').style.borderColor = phone ? '' : '#DC2626';
+        return;
+      }
+
+      const btn = document.getElementById('leadSubmitBtn');
+      btn.textContent = 'Sending...';
+      btn.disabled = true;
+
+      try {
+        await fetch('/api/capture-lead', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            name: name,
+            phone: phone,
+            email: email,
+            assessment: document.getElementById('resultsContent').innerText,
+            totalAmount: _lastTotalAmount,
+            employment: _lastFormData.employment,
+            housing: _lastFormData.housing,
+            children: _lastFormData.children,
+            disability: _lastFormData.disability,
+            age: _lastFormData.age
+          })
+        });
+
+        const leadBox = document.getElementById('leadCaptureBox');
+        leadBox.innerHTML = '<p class="lead-success">✓ Done. A specialist will be in touch shortly.</p>';
+
+      } catch (e) {
+        btn.textContent = 'Get my free callback →';
+        btn.disabled = false;
       }
     }
 
@@ -1093,29 +1198,6 @@
         }
       });
     });
-    async function submitLead(totalAmount) {
-      const name = document.getElementById('leadName').value.trim();
-      const phone = document.getElementById('leadPhone').value.trim();
-      const email = document.getElementById('leadEmail').value.trim();
-      const data = window._assessmentData || {};
-
-      if (!name || !phone) {
-        alert('Please enter your name and phone number.');
-        return;
-      }
-
-      try {
-        await fetch('/api/capture-lead', {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({ name, phone, email, totalAmount, ...data })
-        });
-        document.getElementById('leadForm').style.display = 'none';
-        document.getElementById('leadSuccess').style.display = 'block';
-      } catch (error) {
-        alert('Something went wrong. Please try again.');
-      }
-    }
   </script>
 </body>
 </html>
