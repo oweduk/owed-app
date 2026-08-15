@@ -1,0 +1,72 @@
+import json
+import os
+import datetime
+import sys
+sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
+from agents.utils import call_groq, get_profile, evolve_profile, get_elo, select_parent
+
+MEMORY_PATH = "memory/store.json"
+
+def read_memory():
+    with open(MEMORY_PATH, "r") as f:
+        return json.load(f)
+
+def write_memory(memory):
+    with open(MEMORY_PATH, "w") as f:
+        json.dump(memory, f, indent=2)
+
+def run():
+    memory = read_memory()
+    instruction = memory.get("current_agent_instructions", {}).get("content_agent", "Write an SEO article about UK benefits entitlement.")
+    timestamp = datetime.datetime.utcnow().isoformat()
+    profile = get_profile("content_agent")
+
+    print(f"\n=== CONTENT AGENT — {timestamp} ===")
+    print(f"Instruction: {instruction}")
+
+    system_prompt = f"""{profile}
+
+You write articles that rank on Google and genuinely help people find money they are owed by the government.
+
+Every article you write:
+- Targets a specific high-volume UK search query
+- Has a compelling headline
+- Is 600-800 words
+- Is written in plain English, warm and direct
+- Includes a clear call to action directing readers to owed-app.vercel.app
+- Is formatted in clean markdown
+
+You respond with ONLY the article in markdown. No preamble, no explanation."""
+
+    user_message = f"""Your instruction this cycle: {instruction}
+
+Write one complete SEO article now. Make it genuinely useful and compelling."""
+
+    # Select best historical variant as creative parent
+    parent_code = select_parent("content_agent")
+    current_elo = get_elo("content_agent")
+    parent_context = f"\n\nYour current ELO score is {current_elo}. " + (
+        f"Your best historical variant produced this approach — learn from it:\n{parent_code[:500]}"
+        if parent_code else "No historical variants yet — establish your baseline."
+    )
+
+    print("Writing article...")
+    article = call_groq(system_prompt, user_message + parent_context, max_tokens=1500)
+
+    if "content_outputs" not in memory:
+        memory["content_outputs"] = []
+
+    memory["content_outputs"].append({
+        "timestamp": timestamp,
+        "instruction": instruction,
+        "article": article,
+        "cycle": memory.get("cycles", 0)
+    })
+
+    write_memory(memory)
+
+    evolve_profile("content_agent", profile, f"Wrote article on instruction: {instruction[:100]}. Article length: {len(article)} chars.")
+    print("Article written and saved to memory.")
+
+if __name__ == "__main__":
+    run()
